@@ -1,0 +1,103 @@
+.header {
+    background-color: black;
+    color: white;
+    padding: 15px 0px;
+    margin-bottom: 50px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px 20px;
+  box-sizing: content-box;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.burger {
+    display: none;
+}
+
+.menu a {
+    color:rgb(145, 143, 143);
+    background-color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 15px;
+    transition: all 0.1s ease 0.1s;
+}
+
+.menuBurger a {
+    color:rgb(145, 143, 143);
+    background-color: black;
+    cursor: pointer;
+    display: flex;
+    border-radius: 5px;
+    padding: 5px 15px;
+    transition: all 0.1s ease 0.1s;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.menu a:not(:last-child) {
+    margin-right: 20px;
+}
+
+.menu a:hover {
+    color:rgb(255, 255, 255);
+    background-color: rgb(32, 38, 44);
+}
+
+.menuBurger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    padding-top: 100px;
+    top: 0;
+    right: 0px;
+    z-index: 100;
+    background-color: black;
+    /* opacity: 0.8; */
+    /* overflow-y: hidden; */
+    height: 100%;
+    width: 100%;
+    font-size: 30px;
+    color: white;
+    
+    /* position: relative; */
+}
+
+/* body {
+    overflow:hidden;
+    height: 100vh;
+} */
+
+.closeBurger {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+@media (max-width: 700px) {
+    .menu a:not(:last-child) {
+        margin-right: 10px;
+    }
+    .menu {
+        display: none;
+    }
+    .burger {
+        display: inline;
+    }
+    .logo {
+        display: none;
+    }
+    
+}

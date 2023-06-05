@@ -1,0 +1,23 @@
+.popup {
+    position: absolute;
+    top: 40px;
+    right: 5px;
+}
+
+.removeBtn {
+    padding: 5px 0px;
+    color: red;
+}
+
+.editBtn {
+    padding: 5px 0px;
+    color: green;
+}
+
+.btnmenu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    /* width: 30px; */
+}

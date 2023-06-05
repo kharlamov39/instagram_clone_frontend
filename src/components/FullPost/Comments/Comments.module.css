@@ -1,0 +1,21 @@
+.list {
+    overflow-y: scroll;
+    height: 250px;
+}
+
+.list::-webkit-scrollbar {
+    width: 0;
+}
+
+.input {
+    background-color: rgb(46, 46, 46);
+    border: 1px solid rgb(77, 72, 72);
+    padding: 5px;
+    border-radius: 10px;
+    margin-right: 10px;
+    resize: none;
+}
+
+.input:focus {
+    outline: none;
+}

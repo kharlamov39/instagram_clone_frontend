@@ -1,0 +1,41 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+}
+
+
+.formWrap {
+    width: 400px;
+    order: 1;
+}
+
+.deleteBtn {
+    order: 2;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 700px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-end;
+        
+    }
+    .formWrap {
+        width: 100%;
+        order: 2;
+    }
+    .deleteBtn {
+        order: 1;
+    }
+}
+
+/* @media (max-width: 400px) {
+    .form {
+        width: 300px;
+    }
+} */

@@ -1,0 +1,9 @@
+.formWrap {
+    width: 500px;
+}
+
+@media(max-width: 700px) {
+    .formWrap {
+        width: 90%;
+    }
+}
