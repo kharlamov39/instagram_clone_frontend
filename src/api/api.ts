@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-    baseURL: 'http://localhost:1111'
+    baseURL: 'https://instagram-clone-backend-2.onrender.com/'
 })
 
 // мидлвар для запросов для вшивания токена
