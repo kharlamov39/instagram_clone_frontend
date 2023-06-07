@@ -9,7 +9,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0px 20px;
-  box-sizing: content-box;
+    box-sizing: content-box;
 }
 
 .nav {
@@ -44,6 +44,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    align-items: center;
 }
 
 .menu a:not(:last-child) {
@@ -84,6 +85,7 @@
     position: absolute;
     top: 15px;
     left: 15px;
+    width: 40px;
 }
 
 @media (max-width: 700px) {
@@ -94,7 +96,8 @@
         display: none;
     }
     .burger {
-        display: inline;
+        display: block;
+        width: 40px;
     }
     .logo {
         display: none;

@@ -1,3 +1,4 @@
+import { getPostCommentsAPI } from './../api/comment-api';
 import { CreatePostI, deletePostAPI, getAllPostsAPI } from './../api/post-api';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { createPostAPI } from '../api/post-api'
@@ -19,6 +20,14 @@ export const fetchAllPosts = createAsyncThunk(
     }
 )
 
+export const fetchPostComments = createAsyncThunk(
+    'fetchPostComments', 
+    async (postId:string) => {
+        const response = await getPostCommentsAPI(postId)
+        return response.data
+    }
+)
+
 type State = {
     allPosts: PostsRes[] | []
 }
@@ -34,12 +43,14 @@ const postSlice = createSlice({
         
     },
     extraReducers: {
-        [fetchCreatePost.fulfilled.type]: (state, action) => {
-            alert('Пост создан')
-        },
         [fetchAllPosts.fulfilled.type]: (state, action) => {
             state.allPosts = action.payload
         },
+        [fetchPostComments.fulfilled.type]: (state, action) => {
+            const post = state.allPosts.filter( el => el._id === action.meta.arg)
+            post[0].comments = action.payload
+        },
+
     }
 })
 

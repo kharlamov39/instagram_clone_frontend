@@ -9,6 +9,7 @@ import { useGetPosts } from '../../hooks/useGetPosts'
 const Home = () => {
     
     const allPosts = useGetPosts()
+    console.log(allPosts)
 
     return (
         <div>

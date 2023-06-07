@@ -1,0 +1,20 @@
+.input {
+    border: 1px solid white;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 700px) {
+    .main {
+        flex-direction: column;
+        margin-bottom: 40px;
+        align-items: center;
+        
+    }
+    .input {
+        max-width: 70%;
+    }
+}

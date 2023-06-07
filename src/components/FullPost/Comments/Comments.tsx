@@ -1,33 +1,37 @@
-import { useState, useEffect, useCallback } from 'react'
-import { useAppDispatch, useTypedSelector } from '../../../hooks/hooks'
-import { fetchCreateComment, fetchPostComments } from '../../../redux/commentSlice'
+import { useState, useEffect } from 'react'
 import CommentItem from './CommentItem/CommentItem'
 import styles from './Comments.module.css'
 import Button from '../../Button/Button'
+import { getPostCommentsAPI } from '../../../api/comment-api'
+import { PostCommentsRes } from '../../../types/resTypes'
+import { createCommentAPI } from '../../../api/comment-api'
 
 type Props = {
     postId: string
 }
 
 const Comments:React.FC<Props> = ({postId}) => {
-    const dispatch = useAppDispatch()
-    const {comments} = useTypedSelector( state => state.comment)
     const [ isComments, setIsComments ] = useState<boolean>(false)
     const [ text, setText ] = useState<string>('')
+    const [ data, setData ] = useState<[] | PostCommentsRes[]>([])
 
     const addComment = async () => {
-        await dispatch(fetchCreateComment( {text, postId} ))
-        fetchComments()
+        await createCommentAPI({postId, text})
         setText('')
+        getComments()
     }
 
-    const fetchComments = useCallback ( () => {
-        dispatch(fetchPostComments(postId))
-    }, [postId])
+    const getComments = () => {
+        getPostCommentsAPI(postId).then((res) => setData(res.data))
+    }
 
     useEffect( () => {
-        fetchComments()
-    }, [fetchComments])
+        if(isComments) {
+            getComments()
+        }
+    }, [isComments, postId])
+
+    console.log(data)
 
     return (
         <div>
@@ -49,7 +53,7 @@ const Comments:React.FC<Props> = ({postId}) => {
             </div>
             { isComments && 
             <div className={styles.list}>
-                { comments.map(( el, i) => <CommentItem key={el._id} user={el.user} text={el.text}/>  ) }
+                { data.map(( el, i) => <CommentItem key={el._id} user={el.user} text={el.text}/>  ) }
             </div> }
         </div>
         

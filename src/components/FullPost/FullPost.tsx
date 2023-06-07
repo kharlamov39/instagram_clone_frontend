@@ -30,7 +30,7 @@ const FullPost:React.FC<Props> = ({postData, modal, btnClose}) => {
         if(postId) {
             await deletePostAPI(postId)
             await dispatch(fetchProfile(id))
-            navigate('..')
+            navigate(-1)
         }    
     }
  

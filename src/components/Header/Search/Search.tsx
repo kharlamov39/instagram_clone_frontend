@@ -13,8 +13,8 @@ const Search = () => {
     }, [search])
 
     return (
-        <div>
-            <input type="text" value={search} onChange={ (e) => setSearch(e.target.value)} />
+        <div className={styles.main}>
+            <input type="text" className={styles.input} value={search} onChange={ (e) => setSearch(e.target.value)} />
             <button>Search</button>
         </div>
     )
