@@ -1,4 +1,5 @@
 
+
 export interface RegisterRes {
     firstName: string
     lastName: string
@@ -60,4 +61,37 @@ export interface PostCommentsRes {
 	_id: string
 	text: string
 	user: UserRes
+}
+
+export interface Message {
+	chat: {
+		_id:string
+		latestMessage: string
+		users: UserRes[]
+	}
+	content: string
+	sender: UserRes
+	_id: string
+}
+
+export interface MessageShort {
+	chat: {
+		_id:string
+		latestMessage: string
+		users: string[]
+	}
+	content: string
+	sender: UserRes
+	_id: string
+}
+
+export interface DialogsRes {
+	_id: string
+	users: UserRes[]
+	latestMessage: {
+		chat: string
+		content: string
+		sender: UserRes
+		_id: string
+	}
 }

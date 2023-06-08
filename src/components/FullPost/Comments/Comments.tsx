@@ -31,8 +31,6 @@ const Comments:React.FC<Props> = ({postId}) => {
         }
     }, [isComments, postId])
 
-    console.log(data)
-
     return (
         <div>
             <div style={{marginBottom: '10px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexWrap: 'wrap'}}>

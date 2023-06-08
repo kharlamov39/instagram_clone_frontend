@@ -10,6 +10,7 @@ import { Routes, Route} from "react-router-dom"
 import { useAppDispatch, useTypedSelector } from "./hooks/hooks";
 import { fetchAuthMe } from './redux/authSlice';
 import FullPost from './components/FullPost/FullPost';
+import Dialogs from './components/Dialogs/Dialogs';
 
 const App = () => {
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route path='/profile/:id/*' element={ <Profile /> } />
           <Route path='/profile/:id/:postId' element={ <FullPost modal='modal' btnClose />} />
           <Route path='/profile/:id/update' element={ <UpdateProfile /> } />
+          <Route path='/dialogs' element={ <Dialogs /> } />
           <Route path='/logout' element={ <Logout /> } />
           <Route path='/register' element={ <Register isAuth={isAuth}/> } />
         </Routes>
