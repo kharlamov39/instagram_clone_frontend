@@ -8,10 +8,10 @@ type Props = {
 
 const FullPostImage:React.FC<Props> = ({data}) => {
     return (
-        <div className={styles.modalHomeWrap} style={{backgroundImage: `url(${process.env.REACT_APP_API_URL}${data.image})` }}>
+        <div className={styles.modalHomeWrap} style={{backgroundImage: `url(http://localhost:1111${data.image})` }}>
             <Link to={`/profile/${data.user._id}/${data._id}`}>
                  <img 
-                    src={`${process.env.REACT_APP_API_URL}${data.image}`} 
+                    src={`http://localhost:1111${data.image}`} 
                     alt="image" 
                     className={styles.img}
                 /> 

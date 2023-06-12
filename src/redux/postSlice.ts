@@ -1,5 +1,5 @@
 import { getPostCommentsAPI } from './../api/comment-api';
-import { CreatePostI, deletePostAPI, getAllPostsAPI } from './../api/post-api';
+import { CreatePostI, getAllPostsAPI } from './../api/post-api';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { createPostAPI } from '../api/post-api'
 import { PostsRes } from '../types/resTypes';
@@ -14,8 +14,8 @@ export const fetchCreatePost = createAsyncThunk(
 
 export const fetchAllPosts = createAsyncThunk(
     'fetchAllPosts',
-    async () => {
-        const response = await getAllPostsAPI()
+    async (page:number) => {
+        const response = await getAllPostsAPI(page)
         return response.data
     }
 )
@@ -29,22 +29,27 @@ export const fetchPostComments = createAsyncThunk(
 )
 
 type State = {
-    allPosts: PostsRes[] | []
+    allPosts: PostsRes[]
+    totalPage: number
 }
 
 const initialState:State = {
-    allPosts: []
+    allPosts: [],
+    totalPage: 0
 }
 
 const postSlice = createSlice({
     name: 'posts', 
     initialState,
     reducers: {
-        
+        clearPosts: (state) => {
+            state.allPosts = []
+        }
     },
     extraReducers: {
         [fetchAllPosts.fulfilled.type]: (state, action) => {
-            state.allPosts = action.payload
+            state.allPosts = state.allPosts.concat(action.payload.posts)
+            state.totalPage = action.payload.totalPage
         },
         [fetchPostComments.fulfilled.type]: (state, action) => {
             const post = state.allPosts.filter( el => el._id === action.meta.arg)
@@ -54,5 +59,6 @@ const postSlice = createSlice({
     }
 })
 
+export const { clearPosts } = postSlice.actions
 
 export default postSlice.reducer

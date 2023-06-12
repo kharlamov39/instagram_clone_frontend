@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react"
 import { PostsRes } from "../types/resTypes"
-import { getOnePostAPI } from "../api/post-api"
 import { useAppDispatch, useTypedSelector } from "./hooks"
-import { fetchAllPosts } from "../redux/postSlice"
+import { fetchAllPosts, clearPosts } from "../redux/postSlice"
 
 
-export const useGetPosts = ():PostsRes[] => {
+export const useGetPosts = (page:number):PostsRes[] => {
     const allPosts = useTypedSelector( state => state.post.allPosts)
     const dispatch = useAppDispatch()
 
     useEffect( () => {
-        dispatch( fetchAllPosts())
-    }, [])
+        dispatch( fetchAllPosts(page))
+    }, [page])
 
     return allPosts
 }

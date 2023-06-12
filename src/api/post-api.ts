@@ -1,8 +1,8 @@
-import { CreatePostRes, PostsRes } from "../types/resTypes"
+import { AllPostsRes, CreatePostRes, PostsRes } from "../types/resTypes"
 import { instance } from "./api"
 
-export const getAllPostsAPI = async () => {
-    const res = await instance.get<PostsRes[]>('/post')
+export const getAllPostsAPI = async (page:number) => {
+    const res = await instance.get<AllPostsRes>('/post', {params: { page: page}})
     return res
 }
 

@@ -37,6 +37,14 @@ export interface PostsRes {
 	__v: number
 }
 
+export interface AllPostsRes {
+	currentPage: number
+	limit: number
+	totalPage: number
+	totalPosts: number
+	posts: PostsRes[]
+}
+
 export interface GetProfileRes {
     posts: PostsRes[],
 	_id: string

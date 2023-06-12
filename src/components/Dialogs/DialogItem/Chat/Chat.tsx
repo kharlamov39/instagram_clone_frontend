@@ -2,21 +2,14 @@ import { allMessagesAPI, sendMessageAPI } from '../../../../api/dialog-api'
 import styles from './Chat.module.css'
 import { useEffect, useState } from 'react'
 import { MessageShort } from '../../../../types/resTypes'
-
+import ChatBody from './CharBody'
 
 type Props = {
     currentDialog: string
 }
 
-const Chat:React.FC<Props> = ({currentDialog}) => {
-    const [chatData, setChatData] = useState<MessageShort[]>([])
-    const [ content, setContent ] = useState<string>('')
-
-    const sendMessage = async () => {
-        const res = await sendMessageAPI({content, chatId : currentDialog})
-        setChatData([...chatData, res.data])
-        setContent('')
-    }
+const Chat :React.FC<Props> = ({currentDialog}) => {
+    const [ chatData, setChatData ] = useState<MessageShort[]>([])
 
     useEffect( () => {
         if(currentDialog) {
@@ -25,11 +18,11 @@ const Chat:React.FC<Props> = ({currentDialog}) => {
     }, [currentDialog])
 
     return (
-        <div>
-            {chatData.map((el,i) => <div key={el._id}>{el.sender.lastName} {el.content}</div> )}
-            <textarea style={{border: '1px solid black'}} value={content} onChange={ (e) => setContent(e.target.value)} />
-            <button onClick={ sendMessage}> SEND </button>
-        </div>
+        <ChatBody 
+            chatData={chatData} 
+            currentDialog={currentDialog} 
+            setChatData={setChatData}
+        />
     )
 }
 
