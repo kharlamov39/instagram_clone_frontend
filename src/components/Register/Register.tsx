@@ -3,6 +3,8 @@ import styles from './Register.module.css'
 import { Navigate } from "react-router-dom";
 import Signup from "./Signup/Signup";
 import Login from "./Login/Login";
+import { useTypedSelector } from "../../hooks/hooks";
+import ModalError from "./ModalError/ModalError";
 
 type RegisterProp = {
     isAuth: boolean
@@ -10,6 +12,7 @@ type RegisterProp = {
 
 const Register:React.FC<RegisterProp> = ({isAuth}) => {
     const [ isAccount, setIsAccount] = useState<boolean>(false)
+    const { error } = useTypedSelector(state => state.auth) 
 
     if(isAuth) {
         return <Navigate to='/' />
@@ -31,7 +34,8 @@ const Register:React.FC<RegisterProp> = ({isAuth}) => {
                         Нет акканта? <span onClick={ () => setIsAccount(false)} > Создать </span> 
                     </div>
                 </div>
-            }    
+            } 
+            { error && <ModalError /> }   
         </div>
     )
 }

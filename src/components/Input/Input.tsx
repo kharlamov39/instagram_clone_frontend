@@ -13,8 +13,14 @@ const Input:React.FC<InputProps> = ({type, placeholder, name, children, label}) 
 
     return (
         <div className={styles.main}>
-            <label htmlFor={name} > { label}</label>
-            <Field type={type} name={name} placeholder={placeholder} id={name} className={styles.input} />
+            <label htmlFor={name}> { label}</label>
+            <Field 
+                type={type} 
+                name={name} 
+                placeholder={placeholder} 
+                id={name} 
+                className={styles.input} 
+            />
             { children}
         </div>
     )

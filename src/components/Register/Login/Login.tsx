@@ -5,17 +5,18 @@ import { fetchLogin } from "../../../redux/authSlice";
 import Input from "../../Input/Input";
 import Button from "../../Button/Button";
 import styles from './Login.module.css'
+import InputPassword from "../../InputPassword/InputPassword";
 
 const Login = () => {
     const dispatch = useAppDispatch()
 
     const SignupSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Required'),
-        password: Yup.string().min(5, 'Too Short').max(15, 'Too Long').required('Required')
+        password: Yup.string().min(5, 'Too Short').max(25, 'Too Long').required('Required')
       });
 
     return (
-        <div style={{marginBottom: '20px'}} className={styles.formWrap}>
+        <div className={styles.formWrap}>
             <h1>Login</h1>
             <Formik
                 initialValues={{
@@ -33,9 +34,10 @@ const Login = () => {
                             {errors.email && touched.email ? <div >{errors.email}</div> : <div></div> }
                         </Input>
 
-                        <Input type='password' placeholder='password' name='password' label='Password' > 
+                        <InputPassword placeholder='password' name='password' label='Password' >
                             {errors.password && touched.password ? <div >{errors.password}</div> : <div></div> }
-                        </Input>
+                        </InputPassword>
+                        
                         <Button type="submit" variant='black'> 
                             Login 
                         </Button>
