@@ -29,11 +29,13 @@ export const fetchPostComments = createAsyncThunk(
 )
 
 type State = {
+    loading: boolean
     allPosts: PostsRes[]
     totalPage: number
 }
 
 const initialState:State = {
+    loading: false,
     allPosts: [],
     totalPage: 0
 }
@@ -42,15 +44,29 @@ const postSlice = createSlice({
     name: 'posts', 
     initialState,
     reducers: {
-        clearPosts: (state) => {
-            state.allPosts = []
-        }
+       
     },
     extraReducers: {
-        [fetchAllPosts.fulfilled.type]: (state, action) => {
-            state.allPosts = state.allPosts.concat(action.payload.posts)
-            state.totalPage = action.payload.totalPage
+        //------------------AllPosts---------------
+        [fetchAllPosts.pending.type]: (state, action) => {
+            state.loading = true
         },
+        [fetchAllPosts.fulfilled.type]: (state, action) => {
+            state.loading = false
+            if(action.meta.arg === 1) {
+                state.allPosts = action.payload.posts
+                state.totalPage = action.payload.totalPage
+            } else {
+                state.allPosts = state.allPosts.concat(action.payload.posts)
+                state.totalPage = action.payload.totalPage
+            }
+        },
+        [fetchAllPosts.rejected.type]: (state, action) => {
+            state.loading = false
+        },
+
+        // --------------PostComments-----------------
+
         [fetchPostComments.fulfilled.type]: (state, action) => {
             const post = state.allPosts.filter( el => el._id === action.meta.arg)
             post[0].comments = action.payload
@@ -58,7 +74,5 @@ const postSlice = createSlice({
 
     }
 })
-
-export const { clearPosts } = postSlice.actions
 
 export default postSlice.reducer

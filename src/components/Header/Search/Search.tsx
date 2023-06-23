@@ -1,7 +1,7 @@
-import { instance } from '../../../api/api'
 import { searchProfileAPI } from '../../../api/profile-api'
 import styles from './Search.module.css'
 import { useEffect, useState } from 'react'
+import loupe from '../../../assets/loupe.png'
 
 const Search = () => {
 
@@ -15,7 +15,8 @@ const Search = () => {
     return (
         <div className={styles.main}>
             <input type="text" className={styles.input} value={search} onChange={ (e) => setSearch(e.target.value)} />
-            <button>Search</button>
+            {/* <button>Search</button> */}
+            <img src={loupe} alt="loupe" className={styles.loupe}/>
         </div>
     )
 }

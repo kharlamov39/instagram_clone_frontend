@@ -3,19 +3,18 @@ import FullPost from '../FullPost/FullPost'
 import { useGetPosts } from '../../hooks/useGetPosts'
 import styles from './Home.module.css'
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks'
-import { clearPosts } from '../../redux/postSlice'
+import Preloader from '../Preloader/Preloader'
+
 
 const Home:React.FC = () => {
     const [ page, setPage ] = useState<number>(1)
     const allPosts = useGetPosts(page)
-    const {totalPage} = useTypedSelector(state => state.post)
-    const dispatch = useAppDispatch()
+    const { totalPage } = useTypedSelector(state => state.post)
+    const { loading } = useTypedSelector(state => state.post )
 
-    useEffect( () => {
-        return () => {
-            dispatch(clearPosts())
-        }
-    }, [])
+    if(!allPosts.length) {
+        return <Preloader />
+    }
 
     return (
         <div>
@@ -26,6 +25,8 @@ const Home:React.FC = () => {
             { totalPage > page && 
             <button className={styles.button} onClick={ () => setPage(prev => prev + 1)}>ДАЛЕЕ</button>
             }
+
+            {loading && <Preloader /> }
         </div>
     )
 }

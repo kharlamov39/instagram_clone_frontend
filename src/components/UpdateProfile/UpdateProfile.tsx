@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import camera from '../../assets/camera.png'
 
 const UpdateProfile = () => {
+    const currentId = useTypedSelector(state => state.auth.currentUser?._id)
     const profile = useTypedSelector( state => state.profile.profile)
     const inputRef = useRef<HTMLInputElement>(null)
     const [ image, setImage ] = useState('')
@@ -48,7 +49,7 @@ const UpdateProfile = () => {
                 Loading
             </div>
         )
-    }     
+    }      
 
     return (
         <div className={styles.main}>

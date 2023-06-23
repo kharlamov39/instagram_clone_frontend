@@ -7,6 +7,9 @@ export interface RegisterRes {
     token: string
     _id: string,
 	avatar: string
+	posts: PostsRes[]
+	followers: string[] 
+	following: string[]
 }
 
 export interface AuthMeRes {
@@ -15,6 +18,8 @@ export interface AuthMeRes {
     email: string
     _id: string,
 	avatar: string
+	followers: string[] 
+	following: string[]
 }
 // ---------------------------------------------
 
@@ -51,7 +56,9 @@ export interface GetProfileRes {
 	firstName: string
 	lastName: string
 	email: string
-	avatar: string 
+	avatar: string
+	followers: string[] 
+	following: string[] 
 }
 
 

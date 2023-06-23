@@ -9,13 +9,14 @@ import UpdateProfile from './components/UpdateProfile/UpdateProfile';
 import { Routes, Route} from "react-router-dom"
 import { useAppDispatch, useTypedSelector } from "./hooks/hooks";
 import { fetchAuthMe } from './redux/authSlice';
-import FullPost from './components/FullPost/FullPost';
 import Dialogs from './components/Dialogs/Dialogs';
+import FullPostModal from './components/FullPostModal/FullPostModal';
+import Protected from './components/Protected/Protected';
 
 const App = () => {
 
-  const isAuth = useTypedSelector(state => state.auth.isAuth)
-  const currentUser = useTypedSelector( state => state.auth.currentUser )
+  const {currentUser, isAuth } = useTypedSelector( state => state.auth )
+ 
   const dispatch = useAppDispatch()
 
   useEffect( () => {
@@ -31,8 +32,9 @@ const App = () => {
         <Routes>
           <Route path='/' element={ <Home /> } />
           <Route path='/profile/:id/*' element={ <Profile /> } />
-          <Route path='/profile/:id/:postId' element={ <FullPost modal='modal' btnClose />} />
-          <Route path='/profile/:id/update' element={ <UpdateProfile /> } />
+          <Route path='/profile/:id/:postId' element={ <FullPostModal modal='modal' btnClose />} />
+          
+          <Route path='/profile/:id/update' element={ <Protected currentId={currentUser?._id}> <UpdateProfile /> </Protected> } />
           <Route path='/dialogs' element={ <Dialogs /> } />
           <Route path='/logout' element={ <Logout /> } />
           <Route path='/register' element={ <Register isAuth={isAuth}/> } />

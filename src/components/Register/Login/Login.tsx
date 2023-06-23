@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import { useAppDispatch } from "../../../hooks/hooks";
 import { fetchLogin } from "../../../redux/authSlice";
@@ -7,8 +7,20 @@ import Button from "../../Button/Button";
 import styles from './Login.module.css'
 import InputPassword from "../../InputPassword/InputPassword";
 
+export interface FormValues {
+    email: string
+    password: string
+    rememberMe: boolean
+}
+
 const Login = () => {
     const dispatch = useAppDispatch()
+
+    const initialValues:FormValues = {
+        email: '',
+        password: '',
+        rememberMe: true
+    }
 
     const SignupSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Required'),
@@ -19,12 +31,10 @@ const Login = () => {
         <div className={styles.formWrap}>
             <h1>Login</h1>
             <Formik
-                initialValues={{
-                    email: '',
-                    password: ''
-                }}
+                initialValues={initialValues}
                 validationSchema={SignupSchema}
                 onSubmit={values => {
+                    const { email, password, rememberMe } = values
                     dispatch(fetchLogin(values));
                 }}
             >
@@ -37,6 +47,11 @@ const Login = () => {
                         <InputPassword placeholder='password' name='password' label='Password' >
                             {errors.password && touched.password ? <div >{errors.password}</div> : <div></div> }
                         </InputPassword>
+                        <div style={{marginBottom: '20px'}}>
+                            <label htmlFor="rememberMe"> Remember Me </label>
+                            <Field type="checkbox" name="rememberMe" />
+                        </div>
+                        
                         
                         <Button type="submit" variant='black'> 
                             Login 

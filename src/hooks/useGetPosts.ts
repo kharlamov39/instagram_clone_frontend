@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { PostsRes } from "../types/resTypes"
 import { useAppDispatch, useTypedSelector } from "./hooks"
-import { fetchAllPosts, clearPosts } from "../redux/postSlice"
+import { fetchAllPosts } from "../redux/postSlice"
 
 
 export const useGetPosts = (page:number):PostsRes[] => {

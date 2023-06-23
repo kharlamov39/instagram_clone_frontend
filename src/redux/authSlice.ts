@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { LoginType, RegisterType, authMeAPI, loginAPI, registerAPI } from '../api/auth-api'
 import { RegisterRes } from '../types/resTypes'
 import { fetchDeleteProfile } from './profileSlice'
+import { FormValues } from '../components/Register/Login/Login'
 
 export const fetchRegister = createAsyncThunk(
     'fetchRegister',
@@ -23,9 +24,10 @@ export const fetchRegister = createAsyncThunk(
 
 export const fetchLogin = createAsyncThunk(
     'fetchLogin', 
-    async (obj: LoginType, { rejectWithValue }) => {
+    async (obj: FormValues, { rejectWithValue }) => {
         try {
-            const response = await loginAPI(obj)
+            const { email, password } = obj
+            const response = await loginAPI({email, password})
             if(response.status === 200) {
                 return response.data
             } 
@@ -94,7 +96,9 @@ const authSlice = createSlice({
             state.error = null
             state.currentUser = action.payload
             state.isAuth = true
-            localStorage.setItem('token', action.payload.token )
+            if(action.meta.arg.rememberMe) {
+                localStorage.setItem('token', action.payload.token )
+            }
         },
         [fetchLogin.rejected.type]: (state, action) => {
             state.isAuth = false

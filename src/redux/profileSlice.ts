@@ -1,7 +1,7 @@
 import { GetProfileRes } from './../types/resTypes';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { UpdateProfile, getProfileAPI, updateProfileAPI, deleteProfileAPI } from '../api/profile-api'
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { UpdateProfile, getProfileAPI, updateProfileAPI, deleteProfileAPI } from '../api/profile-api';
+import { followAPI, unfollowAPI } from '../api/following-api';
 
 export const fetchProfile = createAsyncThunk(
     'fetchProfile',
@@ -27,6 +27,29 @@ export const fetchDeleteProfile = createAsyncThunk(
     }
 )
 
+type Obj = {
+    userId:string
+    currentId: string | undefined
+}
+
+export const followProfile = createAsyncThunk(
+    'fetchFollow',
+    async(obj:Obj) => {
+        const { userId, currentId } = obj
+        const response = await followAPI(userId)
+        console.log(response)
+    }
+)
+
+export const unfollowProfile = createAsyncThunk(
+    'unfetchFollow',
+    async(obj:Obj) => {
+        const { userId, currentId } = obj
+        const response = await unfollowAPI(userId)
+        console.log(response)
+    }
+)
+
 
 type State = {
     profile: GetProfileRes | null
@@ -46,12 +69,27 @@ const profileSlice = createSlice({
         [fetchProfile.fulfilled.type]: (state, action) => {
             state.profile = action.payload
         },
+
+
         [fetchUpdateProfile.fulfilled.type]: (state, action) => {
             state.profile = action.payload
         },
+
+        
         [fetchDeleteProfile.fulfilled.type]: (state, action) => {
             window.localStorage.removeItem('token')
             state.profile = null
+        },
+
+        [followProfile.fulfilled.type]: (state, action) => {
+            if(state.profile?.followers != undefined) {
+                state.profile?.followers.push(action.meta.arg.currentId)
+            }
+        },
+        [unfollowProfile.fulfilled.type]: (state, action) => {
+            if(state.profile?.followers != undefined) {
+                state.profile.followers = state.profile?.followers.filter( el => el !== action.meta.arg.currentId)
+            }
         },
     }
 })
