@@ -38,13 +38,13 @@ const Header:React.FC<HeaderProp> = ({isAuth, currentUser}) => {
                         </div>
                         <Link to='/' className={styles.logo}> LOGO </Link>
                     </div>
+                    <Search />
                     <div className={ !burger ? styles.menu : styles.menuBurger}>
                         { burger && 
                         <div className={styles.closeBurger}>
                             <img src={closeBurger} alt="close-burger" onClick={ () => setBurger(false)} />
                         </div> 
                         }
-                        <Search />
                         <Link to='/' onClick={ () => setBurger(false)} > Home </Link>
                         <Link to='/dialogs' onClick={ () => setBurger(false)} > Dialogs </Link>
                         { isAuth 

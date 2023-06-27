@@ -1,0 +1,10 @@
+.main {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    height: auto;
+    z-index: 100;
+    padding: 8px 10px;
+}

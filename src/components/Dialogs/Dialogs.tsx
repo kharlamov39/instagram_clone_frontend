@@ -1,40 +1,43 @@
-import { allMessagesAPI, fetchDialogsAPI, sendMessageAPI } from '../../api/dialog-api'
-import { useTypedSelector } from '../../hooks/hooks'
-import { DialogsRes, Message } from '../../types/resTypes'
+import { Routes, Route } from 'react-router-dom'
+import { fetchDialogsAPI } from '../../api/dialog-api'
+import { DialogsRes, MessageShort } from '../../types/resTypes'
 import Chat from './DialogItem/Chat/Chat'
 import DialogItem from './DialogItem/DialogItem'
 import styles from './Dialogs.module.css'
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
+import { useAppDispatch, useTypedSelector } from '../../hooks/hooks'
+import { fetchDialogs } from '../../redux/dialogsSlice'
 
 const ENDPOINT = 'http://localhost:1111'
 
-const Dialogs = () => {
+var socket = io('http://localhost:1111')
 
-    const [ dialogs, setDialogs ]  = useState<[] | DialogsRes[]>([])
-    const [ currentDialog, setCurrentDialog ] = useState<string | null>(null)
-    const [ socketConnected, setSocketConnected ] = useState<boolean>(false)
-    const currentUser  = useTypedSelector(state => state.auth.currentUser)
+const Dialogs = () => {
+    const dispatch = useAppDispatch()
+    const dialogs = useTypedSelector(state => state.dialog.dialogs)
 
     useEffect( () => {
-        
-        fetchDialogsAPI().then(res => setDialogs(res.data))
-        
+        dispatch(fetchDialogs());
     }, [])
+
 
     useEffect( () => {
         const socket = io(ENDPOINT)
-        // socket.on('message', () )
+        socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
         // socket.on('message', () => {})
     }, [])
 
     return (
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div className={styles.container}>
             <div>
-                { dialogs.map( (el, i) => <DialogItem key={el._id} chatInfo={el} setCurrentDialog={setCurrentDialog}/> ) }
+                { dialogs.map( (el, i) => <DialogItem key={el._id} chatInfo={el} /> ) }
             </div>
+
+            <Routes>
+                <Route path='/:currentDialog' element={ <Chat  />} />
+            </Routes>
             
-            { currentDialog && <Chat currentDialog={currentDialog}/> }
         </div>
     )
 }

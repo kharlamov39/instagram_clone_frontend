@@ -35,11 +35,14 @@ const Comments:React.FC<Props> = ({postId}) => {
         <div>
             <div style={{marginBottom: '10px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexWrap: 'wrap'}}>
                 <textarea placeholder='Ваш комментарий...' className={styles.input} value={text} onChange={(e) => setText(e.target.value)}/>
-                <div>
-                    <Button onClick={addComment} variant='blue'>
-                        Добавить
-                    </Button>
-                </div>
+                { text.length > 0 && 
+                    <div>
+                        <Button onClick={addComment} variant='blue'>
+                            Добавить
+                        </Button>
+                    </div>
+                }
+                
                 
             </div>
             <div style={{marginBottom: '10px'}}>

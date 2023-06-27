@@ -1,27 +1,31 @@
 import { allMessagesAPI, sendMessageAPI } from '../../../../api/dialog-api'
-import styles from './Chat.module.css'
 import { useEffect, useState } from 'react'
 import { MessageShort } from '../../../../types/resTypes'
-import ChatBody from './CharBody'
+import ChatBody from './ChatBody'
+import { useParams } from 'react-router-dom'
+import { useAppDispatch, useTypedSelector } from '../../../../hooks/hooks'
+import { fetchAllChatMessages } from '../../../../redux/dialogsSlice'
 
-type Props = {
-    currentDialog: string
-}
-
-const Chat :React.FC<Props> = ({currentDialog}) => {
-    const [ chatData, setChatData ] = useState<MessageShort[]>([])
+const Chat:React.FC = () => {
+    // const [ activeChatData, setChatData ] = useState<MessageShort[]>([])
+    const activeChatData = useTypedSelector(state => state.dialog.activeChatData)
+    const dispatch = useAppDispatch()
+    const { currentDialog } = useParams()
 
     useEffect( () => {
         if(currentDialog) {
-            allMessagesAPI(currentDialog).then(res => setChatData(res.data) )
+            dispatch(fetchAllChatMessages(currentDialog))
+            // allMessagesAPI(currentDialog).then(res => setChatData(res.data) )
         }
     }, [currentDialog])
 
+    console.log(true)
+
     return (
         <ChatBody 
-            chatData={chatData} 
-            currentDialog={currentDialog} 
-            setChatData={setChatData}
+            activeChatData={activeChatData} 
+            // setChatData={setChatData}
+            currentDialog={currentDialog}
         />
     )
 }

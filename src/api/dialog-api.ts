@@ -13,7 +13,7 @@ export const allMessagesAPI = async (chatId:string) => {
 
 type sendMessageParam = {
     content: string
-    chatId: string | null
+    chatId: string | null | undefined
 }
 
 export const sendMessageAPI = async ({content, chatId}:sendMessageParam) => {

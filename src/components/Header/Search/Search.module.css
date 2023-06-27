@@ -11,10 +11,11 @@
 
 .main {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: rgb(0, 0, 0);
     position: relative;
-    height: 25px;
+    height: 30px;
+    width: 250px;
 }
 
 .loupe {

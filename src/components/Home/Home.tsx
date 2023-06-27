@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
-import FullPost from '../FullPost/FullPost'
-import { useGetPosts } from '../../hooks/useGetPosts'
-import styles from './Home.module.css'
-import { useAppDispatch, useTypedSelector } from '../../hooks/hooks'
-import Preloader from '../Preloader/Preloader'
+import { useState } from 'react';
+import FullPost from '../FullPost/FullPost';
+import { useGetPosts } from '../../hooks/useGetPosts';
+import styles from './Home.module.css';
+import {  useTypedSelector } from '../../hooks/hooks';
+import Preloader from '../Preloader/Preloader';
 
 
 const Home:React.FC = () => {

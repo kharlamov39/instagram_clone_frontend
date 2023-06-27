@@ -17,7 +17,7 @@ const Profile = () => {
     const currentUser = useTypedSelector( state => state.auth.currentUser )
     const profile = useTypedSelector(state => state.profile.profile)
 
-    const isFollow = typeof profile?._id === 'string' && profile?.followers.some( el => el === currentUser?._id)
+    const isFollow:boolean = typeof profile?._id === 'string' && profile?.followers.some( el => el === currentUser?._id)
     const isMyProfile:boolean | null = currentUser && profile?._id === currentUser?._id
 
 

@@ -1,6 +1,11 @@
 .item {
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.26);
     padding: 20px;
-    background-color: beige;
+    background-color: rgba(134, 134, 134, 0.795);
     width: 300px;
+    border-radius: 5px;
+}
+
+.span {
+    color: rgb(100, 100, 100);
 }

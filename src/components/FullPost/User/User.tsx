@@ -9,16 +9,17 @@ type Props = {
 
 const User:React.FC<Props> = ({user}) => {
 
-
     return (
         <div className={styles.postInfo}>
             <div className={styles.profileInfo}>
-                <Link to={`/profile/${user._id}`}>
-                    { user.avatar?.length 
-                    ? <img src={`http://localhost:1111${user.avatar}`} className={styles.img} alt="photo" /> 
-                    : <img src={``} alt="avatar" className={styles.img}/>}
+                <Link to={`/profile/${user._id}`} className={styles.link} >
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                        { user.avatar?.length 
+                        ? <img src={`http://localhost:1111${user.avatar}`} className={styles.img} alt="photo" /> 
+                        : <img src={avatar} alt="avatar" className={styles.img}/>}
+                        {user.firstName } {user.lastName}  
+                    </div>
                 </Link> 
-                <div> {user.firstName } {user.lastName} </div> 
             </div>
         </div>
     )

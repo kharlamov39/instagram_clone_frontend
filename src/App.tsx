@@ -12,6 +12,7 @@ import { fetchAuthMe } from './redux/authSlice';
 import Dialogs from './components/Dialogs/Dialogs';
 import FullPostModal from './components/FullPostModal/FullPostModal';
 import Protected from './components/Protected/Protected';
+import DialogItem from './components/Dialogs/DialogItem/DialogItem';
 
 const App = () => {
 
@@ -35,7 +36,7 @@ const App = () => {
           <Route path='/profile/:id/:postId' element={ <FullPostModal modal='modal' btnClose />} />
           
           <Route path='/profile/:id/update' element={ <Protected currentId={currentUser?._id}> <UpdateProfile /> </Protected> } />
-          <Route path='/dialogs' element={ <Dialogs /> } />
+          <Route path='/dialogs/*' element={ <Dialogs /> } />
           <Route path='/logout' element={ <Logout /> } />
           <Route path='/register' element={ <Register isAuth={isAuth}/> } />
         </Routes>
