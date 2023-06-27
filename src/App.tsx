@@ -13,6 +13,11 @@ import Dialogs from './components/Dialogs/Dialogs';
 import FullPostModal from './components/FullPostModal/FullPostModal';
 import Protected from './components/Protected/Protected';
 import DialogItem from './components/Dialogs/DialogItem/DialogItem';
+import { fetchDialogs } from './redux/dialogsSlice';
+import { MessageShort } from './types/resTypes';
+import io from 'socket.io-client'
+
+var ENDPOINT = 'http://localhost:1111'
 
 const App = () => {
 
@@ -25,6 +30,12 @@ const App = () => {
       dispatch(fetchAuthMe())
     } 
   }, [])
+
+
+  useEffect( () => {
+    const socket = io(ENDPOINT)
+    socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
+}, [])
 
   return (
     <div className="App">

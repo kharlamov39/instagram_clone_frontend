@@ -18,7 +18,7 @@ const FullPostText:React.FC<Props> = ({text, editMode, setEditMode, postId}) => 
     }
 
     return (
-        <div style={{marginBottom: '20px'}}> 
+        <div style={{margin: '20px 0px'}}> 
             { 
                 editMode 
                 ? <>

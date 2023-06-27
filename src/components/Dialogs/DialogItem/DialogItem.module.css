@@ -9,3 +9,16 @@
 .span {
     color: rgb(100, 100, 100);
 }
+
+@media (max-width: 800px) {
+    .item {
+        width: 250px;
+    }
+}
+
+@media (max-width: 600px) {
+    .item {
+        width: 200px;
+        padding: 10px;
+    }
+}

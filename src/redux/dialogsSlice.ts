@@ -35,8 +35,7 @@ const dialogSlice = createSlice({
     initialState,
     reducers: {
         addMessage: (state, action) => {
-            state.activeChatData.push(action.payload)
-            console.log(action.payload)
+            state.activeChatData.push(action.payload);
         }
     },
     extraReducers: {

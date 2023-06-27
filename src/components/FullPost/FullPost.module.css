@@ -1,6 +1,6 @@
 
 .modal {
-    max-width: 1200px; 
+    max-width: 1000px; 
     border-radius: 5px;
     background-color: rgb(0, 0, 0); 
     opacity: 1;
@@ -10,16 +10,18 @@
     position: relative;
     /* text-align: center; */
     margin: 0px auto;
+    border: 1px solid rgba(128, 128, 128, 0.308);
 }
 
 .modalHome {
     border-radius: 5px;
-    max-width: 1200px; 
+    max-width: 1000px; 
     background-color: rgb(0, 0, 0); 
     position: relative;
     color: white;
     margin-bottom: 50px;
     z-index: 99;
+    border: 1px solid rgba(128, 128, 128, 0.308);
 
 }
 
@@ -37,7 +39,7 @@
     margin: 0 auto;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
     .content {
         flex-direction: column;
         height: auto; 

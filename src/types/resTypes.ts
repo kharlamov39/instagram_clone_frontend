@@ -108,5 +108,5 @@ export interface DialogsRes {
 		content: string
 		sender: UserRes
 		_id: string
-	}
+	} | MessageShort
 }

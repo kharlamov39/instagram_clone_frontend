@@ -11,7 +11,6 @@ import { fetchDialogs } from '../../redux/dialogsSlice'
 
 const ENDPOINT = 'http://localhost:1111'
 
-var socket = io('http://localhost:1111')
 
 const Dialogs = () => {
     const dispatch = useAppDispatch()
@@ -22,11 +21,10 @@ const Dialogs = () => {
     }, [])
 
 
-    useEffect( () => {
-        const socket = io(ENDPOINT)
-        socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
-        // socket.on('message', () => {})
-    }, [])
+    // useEffect( () => {
+    //     const socket = io(ENDPOINT)
+    //     socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
+    // }, [])
 
     return (
         <div className={styles.container}>
