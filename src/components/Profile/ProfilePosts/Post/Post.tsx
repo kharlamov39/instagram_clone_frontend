@@ -11,7 +11,7 @@ const Post:React.FC<PostProp> = ({post}) => {
     return (
             <Link to={`${post._id}`} >
                 <img 
-                    src={`http://localhost:1111${post.image}`} 
+                    src={`${process.env.REACT_APP_API_URL}${post.image}`} 
                     alt="image" 
                     className={styles.img}
                 /> 
