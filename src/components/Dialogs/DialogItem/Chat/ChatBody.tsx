@@ -15,7 +15,8 @@ type Props = {
 
 
 // var socket = io(`${process.env.REACT_APP_API_URL}`)
-var socket = io('http://localhost:1111')
+var ENDPOINT = 'https://instagram-clone-frontend-blond.vercel.app/'
+var socket = io(ENDPOINT, {})
 
 
 const ChatBody:React.FC<Props> = ({activeChatData, currentDialog}) => {
@@ -25,13 +26,13 @@ const ChatBody:React.FC<Props> = ({activeChatData, currentDialog}) => {
 
     const sendMessage = async () => {
         const res = await sendMessageAPI({content, chatId : currentDialog})
-        // socket.emit('message', res.data)
+        socket.emit('message', res.data)
         setContent('')
     }
 
-    // useEffect( () => {
-    //     socket.on('response', (data) => dispatch(addMessage(data)) )
-    // }, [])
+    useEffect( () => {
+        socket.on('response', (data) => dispatch(addMessage(data)) )
+    }, [])
 
     useEffect ( () => {
         if(messageWrapRef.current) {
