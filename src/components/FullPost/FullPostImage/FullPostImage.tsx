@@ -11,7 +11,7 @@ const FullPostImage:React.FC<Props> = ({data}) => {
         <div className={styles.modalHomeWrap} style={{backgroundImage: `url(http://localhost:1111${data.image})` }}>
             <Link to={`/profile/${data.user._id}/${data._id}`}>
                  <img 
-                    src={`http://localhost:1111${data.image}`} 
+                    src={`${process.env.REACT_APP_API_URL}${data.image}`} 
                     alt="image" 
                     className={styles.img}
                 /> 
