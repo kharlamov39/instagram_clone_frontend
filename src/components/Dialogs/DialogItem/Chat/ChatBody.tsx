@@ -16,7 +16,7 @@ type Props = {
 
 // var socket = io(`${process.env.REACT_APP_API_URL}`)
 var ENDPOINT = 'https://instagram-clone-backend-2.onrender.com'
-var socket = io(ENDPOINT, {withCredentials: true})
+var socket = io(ENDPOINT)
 
 
 const ChatBody:React.FC<Props> = ({activeChatData, currentDialog}) => {
