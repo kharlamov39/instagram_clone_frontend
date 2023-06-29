@@ -1,5 +1,5 @@
-import { Field } from "formik"
-import styles from './Input.module.css'
+import { Field } from "formik";
+import styles from "./Input.module.css";
 
 interface InputProps {
     type: string
@@ -21,7 +21,7 @@ const Input:React.FC<InputProps> = ({type, placeholder, name, children, label}) 
                 id={name} 
                 className={styles.input} 
             />
-            { children}
+               { children} 
         </div>
     )
 }

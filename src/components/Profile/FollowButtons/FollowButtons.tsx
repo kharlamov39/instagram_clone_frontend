@@ -23,7 +23,7 @@ const FollowButtons:React.FC<Props> = ({userId, currentId, isFollow}) => {
     }
 
     return (
-        <div>
+        <div className={styles.followBtns}>
             {   isFollow
                 ? <Button variant='red' onClick={unfollow}> Отписаться </Button>
                 : <Button variant='green' onClick={follow}> Подписаться </Button> 

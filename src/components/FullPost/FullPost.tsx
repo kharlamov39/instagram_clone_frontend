@@ -50,7 +50,7 @@ const FullPost:React.FC<Props> = ({postData, modal, btnClose}) => {
                         <User user={data.user}/>
                         <FullPostText text={data.text} editMode={editMode} setEditMode={setEditMode} postId={data._id}/>
                         <Comments postId={data._id}/>
-                        { authId === data.user._id && modal === 'modal' && <Popup removePost={removePost} setEditMode={setEditMode}/> }  
+                        { authId === data.user._id && modal === 'modal' && !editMode && <Popup removePost={removePost} setEditMode={setEditMode}/> }  
                     </div>
                     { btnClose &&  <BtnClose /> }
                 </div>

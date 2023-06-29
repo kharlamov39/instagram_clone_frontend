@@ -1,11 +1,10 @@
-import { searchProfileAPI } from '../../../api/profile-api'
-import styles from './Search.module.css'
-import { useEffect, useState, useRef } from 'react'
-import loupe from '../../../assets/loupe.png'
-import { useDebounce } from '../../../hooks/useDebounce'
-import PopupSearch from './PopupSearch/PopupSearch'
-import { useLocation } from 'react-router-dom'
-
+import { searchProfileAPI } from "../../../api/profile-api";
+import styles from "./Search.module.css";
+import { useEffect, useState, useRef } from "react";
+import loupe from "../../../assets/loupe.png";
+import { useDebounce } from "../../../hooks/useDebounce";
+import PopupSearch from "./PopupSearch/PopupSearch";
+import { useLocation } from "react-router-dom";
 
 const Search = () => {
     const {pathname} = useLocation()
@@ -34,7 +33,7 @@ const Search = () => {
                 type="text" 
                 className={styles.input} 
                 value={search} 
-                onChange={ (e) => setSearch(e.target.value)} 
+                onChange={ (e:React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} 
                 onClick={ () => setPopup(true)}  
             />
             {/* <img src={loupe} alt="loupe" className={styles.loupe}/> */}

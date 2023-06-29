@@ -1,8 +1,8 @@
-import styles from './InputPassword.module.css'
-import { Field } from "formik"
+import styles from "./InputPassword.module.css";
+import { Field } from "formik";
 import { useState } from "react"; 
-import hidePassword from '../../assets/hidePassword.png'
-import showPassword from '../../assets/showPassword.png'
+import hidePassword from "../../assets/hidePassword.png";
+import showPassword from "../../assets/showPassword.png";
 
 interface InputPasswordProps {
     placeholder: string
@@ -28,8 +28,8 @@ const InputPassword:React.FC<InputPasswordProps> = ({ placeholder, name, childre
                 />
                 <div className={styles.img} >
                     { showPass === 'password' 
-                        ?  <img src={showPassword} alt="showPassword" onClick={ () => setShowPass(prev => 'text') } /> 
-                        : <img src={hidePassword} alt="hidePassword" onClick={ () => setShowPass(prev => 'password')} /> 
+                        ?  <img src={showPassword} alt="showPassword" onClick={ () => setShowPass('text') } /> 
+                        : <img src={hidePassword} alt="hidePassword" onClick={ () => setShowPass('password') } /> 
                     }
                 </div>
             </div>

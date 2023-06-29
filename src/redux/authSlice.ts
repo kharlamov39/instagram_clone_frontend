@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { LoginType, RegisterType, authMeAPI, loginAPI, registerAPI } from '../api/auth-api'
+import { RegisterType, authMeAPI, loginAPI, registerAPI } from '../api/auth-api'
 import { RegisterRes } from '../types/resTypes'
 import { fetchDeleteProfile } from './profileSlice'
 import { FormValues } from '../components/Register/Login/Login'

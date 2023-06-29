@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom'
 import Button from '../../Button/Button'
 import check from '../../../assets/check.png'
 
-
 const CreatePost = () => {
     const { id } = useParams()
     const [ image, setImage ] = useState<string>('')
@@ -38,7 +37,7 @@ const CreatePost = () => {
 
     return (
         <div className={styles.main} >
-            <textarea className={styles.textarea} placeholder='Поделитесь моментом' value={text} onChange={ (e) => setText(e.target.value)} />
+            <textarea className={styles.textarea} placeholder='Поделитесь моментом' value={text} onChange={ (e) => setText(e.target.value)} maxLength={100}/>
             
             { image.length > 0 && 
             <div className={styles.photo} >
@@ -58,13 +57,9 @@ const CreatePost = () => {
                     <div className={styles.addTwo}>
                         <img src={check} alt="check" onClick={addPost} />
                     </div>
-                    
-                </div>
-                
+                </div>  
             </div>
-            
         </div>
-        
     )
 }
 

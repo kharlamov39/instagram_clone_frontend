@@ -53,7 +53,7 @@ const Login = () => {
                         </div>
                         
                         
-                        <Button type="submit" variant='black'> 
+                        <Button type="submit" variant='blue'> 
                             Login 
                         </Button>
                     </Form>

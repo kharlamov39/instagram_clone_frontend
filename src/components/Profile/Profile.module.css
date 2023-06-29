@@ -4,3 +4,9 @@
     flex-wrap: wrap;
     margin-bottom: 50px;
 }
+
+@media (max-width: 600px) {
+    .buttons {
+        justify-content: center;
+    }
+}

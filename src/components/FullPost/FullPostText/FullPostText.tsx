@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { editPostAPI } from '../../../api/post-api'
+import styles from './FullPostText.module.css'
 
 type Props = {
     text: string
     editMode: boolean
-    setEditMode: any
+    setEditMode: (editMode:boolean) => void
     postId: string
 }
 
@@ -18,12 +19,18 @@ const FullPostText:React.FC<Props> = ({text, editMode, setEditMode, postId}) => 
     }
 
     return (
-        <div style={{margin: '20px 0px'}}> 
+        <div className={styles.container} > 
             { 
                 editMode 
                 ? <>
-                    <input type="text" value={postText} onChange={ (e) => setPostText(e.target.value)} />
-                    <button style={{color: 'blue'}} onClick={handleEditPost}> Сохранить</button>
+                    <input 
+                        type="text" 
+                        value={postText} 
+                        onChange={ (e:React.ChangeEvent<HTMLInputElement>) => setPostText(e.target.value)} 
+                        className={styles.input}
+                        maxLength={100}
+                    />
+                    <button className={styles.button} onClick={handleEditPost}> Сохранить</button>
                 </> 
                 : postText
             } 

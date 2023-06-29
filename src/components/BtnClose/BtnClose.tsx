@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom"
-import styles from './BtnClose.module.css'
-import deletePhoto from '../../assets/deletePhoto.png'
+import { useNavigate } from "react-router-dom";
+import styles from "./BtnClose.module.css";
+import deletePhoto from "../../assets/deletePhoto.png";
 
 const BtnClose = () => {
-
     const navigate = useNavigate()
 
     return (

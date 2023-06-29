@@ -1,6 +1,6 @@
 .btnclose {
     position: absolute;
-    top: -20px;
-    right: -20px;
+    top: -24px;
+    right: -2px;
     z-index: 2;
 }

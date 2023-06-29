@@ -11,10 +11,9 @@ const AccessChat:React.FC<Props> = ({profileId}) => {
 
     const accessChat = async () => {
         await accessChatAPI(profileId)
-        navigate('/dialogs')
+        navigate(`/dialogs`)
     }
     
-
     return (
         <div>
             <Button variant='blue' onClick={accessChat}>

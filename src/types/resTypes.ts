@@ -58,7 +58,7 @@ export interface GetProfileRes {
 	email: string
 	avatar: string
 	followers: string[] 
-	following: string[] 
+	following: string[]
 }
 
 

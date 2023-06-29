@@ -62,7 +62,7 @@ const Signup = () => {
                             {errors.password && touched.password ? <div >{errors.password}</div> : <div></div> }
                         </InputPassword>
                       
-                        <Button type="submit" variant="black">
+                        <Button type="submit" variant="blue">
                             Sign up
                         </Button>
                     </Form>

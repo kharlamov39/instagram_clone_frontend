@@ -1,14 +1,14 @@
-import { Formik, Form } from 'formik'
-import { useAppDispatch, useTypedSelector } from '../../hooks/hooks'
-import Input from '../Input/Input'
-import styles from './UpdateProfile.module.css'
-import * as Yup from 'yup';
-import { useRef, useState } from 'react'
-import { instance } from '../../api/api';
-import { fetchUpdateProfile, fetchDeleteProfile } from '../../redux/profileSlice';
-import Button from '../Button/Button';
-import { useNavigate } from 'react-router-dom';
-import camera from '../../assets/camera.png'
+import { Formik, Form } from "formik";
+import { useAppDispatch, useTypedSelector } from "../../hooks/hooks";
+import Input from "../Input/Input";
+import styles from "./UpdateProfile.module.css";
+import * as Yup from "yup";
+import { useRef, useState } from "react";
+import { instance } from "../../api/api";
+import { fetchUpdateProfile, fetchDeleteProfile } from "../../redux/profileSlice";
+import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
+import camera from "../../assets/camera.png";
 
 const UpdateProfile = () => {
     const currentId = useTypedSelector(state => state.auth.currentUser?._id)
@@ -45,9 +45,7 @@ const UpdateProfile = () => {
 
     if(!profile) {
         return (
-            <div>
-                Loading
-            </div>
+            <div> Loading </div>
         )
     }      
 
@@ -78,17 +76,17 @@ const UpdateProfile = () => {
                             <input type="file" name='avatar' accept='image/*' hidden ref={inputRef} onChange={(e) => handleChange(e, setFieldValue)}/>
                             <div style={{marginBottom: '30px'}}>
                                 <div>
-                                    Aватар
+                                    Avatar
                                     <img src={camera} alt="camera" onClick={ () => inputRef.current?.click() } />
                                 </div>
                                 { !image.length 
-                                ? <img src={`http://localhost:1111${profile.avatar}`} alt="avatar" width='100px' />
-                                : <img src={`http://localhost:1111${image}`} alt="avatar" width='100px' />
+                                ? <img src={`${process.env.REACT_APP_API_URL}${profile.avatar}`} alt="avatar" width='200px' />
+                                : <img src={`${process.env.REACT_APP_API_URL}${image}`} alt="avatar" width='200px' />
                                 }   
                                 
                             </div>
                             
-                            <Button type="submit" variant='black'>
+                            <Button type="submit" variant='blue'>
                                 Обновить
                             </Button>
                             

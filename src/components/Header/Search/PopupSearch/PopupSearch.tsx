@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
-import { UserRes } from '../../../../types/resTypes'
-import User from '../../../FullPost/User/User'
-import styles from './PopupSearch.module.css'
+import { useEffect, useRef } from "react";
+import { UserRes } from "../../../../types/resTypes";
+import User from "../../../FullPost/User/User";
+import styles from "./PopupSearch.module.css";
 
 type Props = {
     data: UserRes[]
@@ -23,6 +23,10 @@ const PopupSearch:React.FC<Props> = ({data, setPopup}) => {
             
         }
     }, [popupRef])
+
+    if(data.length === 0) {
+        return <div></div>
+    }
 
     return (
         <div className={styles.main} ref={popupRef} >

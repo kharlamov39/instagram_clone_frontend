@@ -13,6 +13,7 @@ type Props = {
     currentDialog: string | undefined
 }
 
+
 var socket = io('http://localhost:1111')
 
 const ChatBody:React.FC<Props> = ({activeChatData, currentDialog}) => {

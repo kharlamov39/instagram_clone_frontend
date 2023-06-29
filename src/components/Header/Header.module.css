@@ -1,6 +1,6 @@
 .header {
     background-color: black;
-    color: white;
+    /* color: white; */
     padding: 15px 0px;
     margin-bottom: 50px;
 }
@@ -12,7 +12,7 @@
     box-sizing: content-box;
 }
 
-.nav {
+.navigation {
     display: flex;
     justify-content: space-between;
 }
@@ -66,20 +66,13 @@
     right: 0px;
     z-index: 100;
     background-color: black;
-    /* opacity: 0.8; */
-    /* overflow-y: hidden; */
     height: 100%;
     width: 100%;
     font-size: 30px;
     color: white;
-    
-    /* position: relative; */
 }
 
-/* body {
-    overflow:hidden;
-    height: 100vh;
-} */
+
 
 .closeBurger {
     position: absolute;
@@ -101,6 +94,25 @@
     }
     .logo {
         display: none;
+    }
+    .container {
+        padding: 0px 30px;
+    }
+    .header {
+        margin-bottom: 10px;
+    }
+    
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0px 10px;
+    }
+    .header {
+        padding: 5px 0px;
+    }
+    .navigation {
+        height: 50px;
     }
     
 }

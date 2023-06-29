@@ -33,23 +33,26 @@ const Comments:React.FC<Props> = ({postId}) => {
 
     return (
         <div>
-            <div style={{marginBottom: '10px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexWrap: 'wrap'}}>
-                <textarea placeholder='Ваш комментарий...' className={styles.input} value={text} onChange={(e) => setText(e.target.value)}/>
+            <div className={styles.inputWrap}>
+                { window.localStorage.getItem('token') && 
+                    <textarea 
+                        placeholder='Ваш комментарий...' 
+                        className={styles.input} 
+                        value={text} 
+                        onChange={(e) => setText(e.target.value)}
+                    /> 
+                }
                 { text.length > 0 && 
                     <div>
-                        <Button onClick={addComment} variant='blue'>
-                            Добавить
-                        </Button>
+                        <Button onClick={addComment} variant='blue'> Добавить </Button>
                     </div>
                 }
-                
-                
             </div>
-            <div style={{marginBottom: '10px'}}>
+            <div className={styles.buttonsWrap}>
                 {
                     isComments 
-                    ? <button onClick={ () => setIsComments(false)} style={{color: 'gray'}} > Скрыть комментарии</button> 
-                    : <button onClick={ () => setIsComments(true)} style={{color: 'gray'}} > Показать комментарии</button>
+                    ? <button onClick={ () => setIsComments(false)} className={styles.button} > Скрыть комментарии</button> 
+                    : <button onClick={ () => setIsComments(true)} className={styles.button} > Показать комментарии</button>
                 }
             </div>
             { isComments && 

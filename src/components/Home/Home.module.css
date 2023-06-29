@@ -1,6 +1,14 @@
 .button {
     padding: 10px 20px;
-    background-color: cornflowerblue;
+    background-color: rgba(100, 148, 237, 0);
+    color: white;
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: 10px;
     margin: 0 auto;
+    width: 100%;
     margin-bottom: 100px;
+}
+
+.button:hover {
+    border: 1px solid rgb(235, 235, 235);
 }

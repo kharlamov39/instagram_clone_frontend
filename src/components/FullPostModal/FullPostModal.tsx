@@ -10,7 +10,7 @@ const FullPostModal:React.FC<Props> = ({modal, btnClose}) => {
     return (
         <div className={styles.main}>
             <FullPost modal={modal} btnClose={btnClose}/>
-        </div>
+        </div> 
     )
 }
 

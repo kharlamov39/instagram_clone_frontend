@@ -1,15 +1,12 @@
-import { Routes, Route } from 'react-router-dom'
-import { fetchDialogsAPI } from '../../api/dialog-api'
-import { DialogsRes, MessageShort } from '../../types/resTypes'
+import { Routes, Route, Navigate, useParams } from 'react-router-dom'
 import Chat from './DialogItem/Chat/Chat'
 import DialogItem from './DialogItem/DialogItem'
 import styles from './Dialogs.module.css'
 import { useEffect, useState } from 'react'
-import io from 'socket.io-client'
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks'
 import { fetchDialogs } from '../../redux/dialogsSlice'
 
-const ENDPOINT = 'http://localhost:1111'
+const ENDPOINT = process.env.REACT_APP_API_URL
 
 
 const Dialogs = () => {
@@ -20,11 +17,14 @@ const Dialogs = () => {
         dispatch(fetchDialogs());
     }, [])
 
-
     // useEffect( () => {
     //     const socket = io(ENDPOINT)
     //     socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
     // }, [])
+
+    if(!window.localStorage.getItem('token')) {
+        return <Navigate to='/register'/>
+    }
 
     return (
         <div className={styles.container}>
