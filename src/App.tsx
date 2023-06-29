@@ -32,7 +32,7 @@ const App = () => {
 
 
   useEffect( () => {
-    const socket = io(ENDPOINT)
+    const socket = io(ENDPOINT, {})
     socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
 }, [])
 
