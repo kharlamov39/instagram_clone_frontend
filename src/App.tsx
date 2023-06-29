@@ -16,7 +16,7 @@ import { fetchDialogs } from './redux/dialogsSlice';
 import { MessageShort } from './types/resTypes';
 import io from 'socket.io-client'
 
-var ENDPOINT = 'http://localhost:1111'
+var ENDPOINT = 'https://instagram-clone-frontend-blond.vercel.app'
 
 const App = () => {
 
