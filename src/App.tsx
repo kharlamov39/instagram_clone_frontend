@@ -16,7 +16,7 @@ import { fetchDialogs } from './redux/dialogsSlice';
 import { MessageShort } from './types/resTypes';
 import io from 'socket.io-client'
 
-var ENDPOINT = `${process.env.REACT_APP_API_URL}`
+var ENDPOINT = 'http://localhost:1111'
 
 const App = () => {
 

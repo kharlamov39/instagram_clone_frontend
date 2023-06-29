@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-    withCredentials: true,
-    baseURL: process.env.REACT_APP_API_URL,
+    baseURL: 'http://localhost:1111',
 })
 
 // мидлвар для запросов для вшивания токена

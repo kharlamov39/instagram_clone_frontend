@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks'
 import { fetchDialogs } from '../../redux/dialogsSlice'
 
-const ENDPOINT = process.env.REACT_APP_API_URL
+const ENDPOINT = 'http://localhost:1111'
 
 
 const Dialogs = () => {

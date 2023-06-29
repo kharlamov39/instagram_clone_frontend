@@ -15,7 +15,7 @@ const User:React.FC<Props> = ({user}) => {
                 <Link to={`/profile/${user._id}`} className={styles.link} >
                     <div style={{display: 'flex', alignItems: 'center'}}>
                         { user.avatar?.length 
-                        ? <img src={`${process.env.REACT_APP_API_URL}${user.avatar}`} className={styles.img} alt="photo" /> 
+                        ? <img src={`http://localhost:1111${user.avatar}`} className={styles.img} alt="photo" /> 
                         : <img src={avatar} alt="avatar" className={styles.img}/>}
                         {user.firstName } {user.lastName}  
                     </div>

@@ -41,7 +41,7 @@ const CreatePost = () => {
             
             { image.length > 0 && 
             <div className={styles.photo} >
-                <img src={`${process.env.REACT_APP_API_URL}${image}`} alt="photo" />
+                <img src={`http://localhost:1111${image}`} alt="photo" />
                 <img src={deletePhoto} alt="" className={styles.deletePhoto} onClick={() => setImage('')} />
             </div>
             }

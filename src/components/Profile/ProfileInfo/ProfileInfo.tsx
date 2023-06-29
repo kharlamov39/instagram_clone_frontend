@@ -32,7 +32,7 @@ const ProfileInfo:React.FC<Props> = ({profile, isMyProfile}) => {
                 <div className={styles.avatar}  > 
                 {
                     profile?.avatar 
-                    ? <img src={`${process.env.REACT_APP_API_URL}${profile?.avatar}`} alt="avatar" className={styles.img}/>
+                    ? <img src={`http://localhost:1111${profile?.avatar}`} alt="avatar" className={styles.img}/>
                     : <img src={avatar} alt="avatar" className={styles.img} /> 
                 }
                 </div> 

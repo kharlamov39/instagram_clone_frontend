@@ -80,8 +80,8 @@ const UpdateProfile = () => {
                                     <img src={camera} alt="camera" onClick={ () => inputRef.current?.click() } />
                                 </div>
                                 { !image.length 
-                                ? <img src={`${process.env.REACT_APP_API_URL}${profile.avatar}`} alt="avatar" width='200px' />
-                                : <img src={`${process.env.REACT_APP_API_URL}${image}`} alt="avatar" width='200px' />
+                                ? <img src={`http://localhost:3000${profile.avatar}`} alt="avatar" width='200px' />
+                                : <img src={`http://localhost:3000${image}`} alt="avatar" width='200px' />
                                 }   
                                 
                             </div>
