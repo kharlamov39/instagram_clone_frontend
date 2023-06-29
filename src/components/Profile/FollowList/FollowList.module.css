@@ -1,0 +1,58 @@
+.wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    height: 100vh;
+    background-color: rgba(51, 50, 50, 0.671);
+    z-index: 9999;
+    padding-top: 100px;
+    
+}
+
+.container {
+    width: 400px;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgba(139, 139, 139, 0.384);
+    margin: 0 auto;
+    position: relative;
+}
+
+.togglers {
+    display: flex; 
+}
+
+.list {
+    display: flex;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 20px 0px 20px 15px;
+}
+
+.list::-webkit-scrollbar {
+    width: 7px;
+    background-color: inherit;
+}
+  
+.list::-webkit-scrollbar-thumb {
+    background-color: rgba(53, 53, 53, 0.781);
+    border-radius: 5px;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0px;
+    right: 0;
+}
+
+.btnToggler {
+    padding: 10px 30px;
+    border: 1px solid rgb(112, 112, 112);
+    border-top: none;
+}
+
+
+.userWrap {
+    margin-bottom: 5px;
+}
