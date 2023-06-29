@@ -25,13 +25,13 @@ const ChatBody:React.FC<Props> = ({activeChatData, currentDialog}) => {
 
     const sendMessage = async () => {
         const res = await sendMessageAPI({content, chatId : currentDialog})
-        socket.emit('message', res.data)
+        // socket.emit('message', res.data)
         setContent('')
     }
 
-    useEffect( () => {
-        socket.on('response', (data) => dispatch(addMessage(data)) )
-    }, [])
+    // useEffect( () => {
+    //     socket.on('response', (data) => dispatch(addMessage(data)) )
+    // }, [])
 
     useEffect ( () => {
         if(messageWrapRef.current) {

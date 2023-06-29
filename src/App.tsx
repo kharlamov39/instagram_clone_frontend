@@ -16,7 +16,7 @@ import { fetchDialogs } from './redux/dialogsSlice';
 import { MessageShort } from './types/resTypes';
 import io from 'socket.io-client'
 
-var ENDPOINT = 'https://instagram-clone-frontend-blond.vercel.app/'
+// var ENDPOINT = 'https://instagram-clone-frontend-blond.vercel.app/'
 
 const App = () => {
 
@@ -31,10 +31,10 @@ const App = () => {
   }, [])
 
 
-  useEffect( () => {
-    const socket = io(ENDPOINT, {})
-    socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
-}, [])
+//   useEffect( () => {
+//     const socket = io(ENDPOINT, {})
+//     socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
+// }, [])
 
   return (
     <div className="App">
