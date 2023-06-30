@@ -28,7 +28,7 @@
 }
 
 .postInfo {
-    padding: 15px 50px;
+    padding: 15px;
     position: relative;
     width: 400px;
 }
@@ -41,7 +41,7 @@
     margin: 0 auto;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 860px) {
     .content {
         flex-direction: column;
         height: auto; 
