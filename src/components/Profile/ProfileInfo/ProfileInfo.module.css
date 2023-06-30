@@ -65,4 +65,11 @@
     .profile {
         flex-direction: column;
     }
+    .avatar {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    .namesInfo {
+        margin-right: 5px;
+    }
 }
