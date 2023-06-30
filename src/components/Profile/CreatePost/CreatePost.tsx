@@ -42,13 +42,13 @@ const CreatePost = () => {
             { image.length > 0 && 
             <div className={styles.photo} >
                 <img src={`${process.env.REACT_APP_API_URL}${image}`} alt="photo" />
-                <img src={deletePhoto} alt="" className={styles.deletePhoto} onClick={() => setImage('')} />
+                <img src={deletePhoto} alt="delete-photo" className={styles.deletePhoto} onClick={() => setImage('')} />
             </div>
             }
             <div className={styles.btns}>
                 <img src={camera} alt="camera" onClick={ () => fileRef.current?.click() } />
                 <input type="file" hidden ref={fileRef} onChange={handleFileChange}/>
-                <div style={{display: (text || image) ? 'flex' : 'none'}}>
+                <div style={{display: image ? 'flex' : 'none'}}>
                     <div className={styles.addOne}>
                         <Button onClick={addPost} type='button' variant='blue' >
                             Опубликовать
