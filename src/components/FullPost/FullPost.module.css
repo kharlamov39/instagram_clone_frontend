@@ -41,7 +41,7 @@
     margin: 0 auto;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 890px) {
     .content {
         flex-direction: column;
         height: auto; 
@@ -53,6 +53,6 @@
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
-        padding: 15px 30px;
+        padding: 15px;
     }
 }
