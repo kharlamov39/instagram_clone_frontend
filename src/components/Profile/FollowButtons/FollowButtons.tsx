@@ -6,7 +6,7 @@ import styles from './FollowButtons.module.css';
 
 type Props = {
     userId: string
-    currentId:string | undefined
+    currentId:string
     isFollow: boolean
 }
 

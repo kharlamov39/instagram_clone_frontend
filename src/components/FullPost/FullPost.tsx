@@ -1,17 +1,17 @@
-import styles from './FullPost.module.css'
-import { useState } from 'react'
-import { useAppDispatch, useTypedSelector } from '../../hooks/hooks'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useFullPost } from '../../hooks/useFullPost'
-import { deletePostAPI } from '../../api/post-api'
-import { fetchProfile } from '../../redux/profileSlice'
-import { PostsRes } from '../../types/resTypes'
-import Popup from './Popup/Popup'
-import FullPostImage from './FullPostImage/FullPostImage'
-import User from './User/User'
-import FullPostText from './FullPostText/FullPostText'
-import BtnClose from '../BtnClose/BtnClose'
-import Comments from './Comments/Comments'
+import styles from './FullPost.module.css';
+import { useState } from 'react';
+import { useTypedSelector } from '../../hooks/hooks';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useFullPost } from '../../hooks/useFullPost';
+import { deletePostAPI } from '../../api/post-api';
+import { PostsRes } from '../../types/resTypes';
+import Popup from './Popup/Popup';
+import FullPostImage from './FullPostImage/FullPostImage';
+import User from './User/User';
+import FullPostText from './FullPostText/FullPostText';
+import BtnClose from '../BtnClose/BtnClose';
+import Comments from './Comments/Comments';
+import Preloader from '../Preloader/Preloader';
 
 type Props = {
     postData?: PostsRes
@@ -24,13 +24,12 @@ const FullPost:React.FC<Props> = ({postData, modal, btnClose}) => {
     const navigate = useNavigate()
     const [ editMode, setEditMode ] = useState<boolean>(false)
     const authId = useTypedSelector( state => state.auth.currentUser?._id )
-    const dispatch = useAppDispatch()
 
-    const removePost = async () => {
+    const removePost = () => {
         if(postId) {
-            await deletePostAPI(postId)
-            await dispatch(fetchProfile(id))
-            navigate(-1)
+            deletePostAPI(postId)
+            .then( (res) => navigate(-1))
+            .catch((err) => alert(err))
         }    
     }
  
@@ -38,7 +37,7 @@ const FullPost:React.FC<Props> = ({postData, modal, btnClose}) => {
 
     if( !data) {
         return (
-            <div className={styles[modal]}> Loading </div>
+            <Preloader />
         )
     }
     
@@ -50,7 +49,8 @@ const FullPost:React.FC<Props> = ({postData, modal, btnClose}) => {
                         <User user={data.user}/>
                         <FullPostText text={data.text} editMode={editMode} setEditMode={setEditMode} postId={data._id}/>
                         <Comments postId={data._id}/>
-                        { authId === data.user._id && modal === 'modal' && !editMode && <Popup removePost={removePost} setEditMode={setEditMode}/> }  
+                        { authId === data.user._id && modal === 'modal' && !editMode && 
+                        <Popup removePost={removePost} setEditMode={setEditMode}/> }  
                     </div>
                     { btnClose &&  <BtnClose /> }
                 </div>

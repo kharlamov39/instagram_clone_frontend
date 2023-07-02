@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import { RegisterRes } from "../../types/resTypes";
+import { AuthMeRes, RegisterRes } from "../../types/resTypes";
 import burgerMenu from "../../assets/burgerMenu.png";
 import closeBurger from "../../assets/closeBurger.png";
 import { useState, useEffect } from "react";
@@ -8,7 +8,7 @@ import Search from "./Search/Search";
 
 type HeaderProp = {
     isAuth: boolean
-    currentUser: null | RegisterRes
+    currentUser: null | RegisterRes | AuthMeRes
 }
 
 const Header:React.FC<HeaderProp> = ({isAuth, currentUser}) => {

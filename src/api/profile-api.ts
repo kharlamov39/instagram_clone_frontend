@@ -13,10 +13,10 @@ export const updateProfileAPI = async ({_id, firstName, lastName, avatar}:Update
     return res
 }
 
-export const deleteProfileAPI = async (_id: string | undefined) => {
-    const res = await instance.delete(`profile/${_id}`)
-    return res
-}
+// export const deleteProfileAPI = async (_id: string | undefined) => {
+//     const res = await instance.delete(`profile/${_id}`)
+//     return res
+// }
 //@ts-ignore
 export const searchProfileAPI = async (search:string) => {
     //@ts-ignore

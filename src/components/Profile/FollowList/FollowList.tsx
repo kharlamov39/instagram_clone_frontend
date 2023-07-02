@@ -53,12 +53,12 @@ const FollowList:React.FC<Props> = ({setFollowList, followList, userId}) => {
                 <div className={styles.list}>
                     { followList === 'followers' && 
                         <div> 
-                            {followers.map( (el,i) => <div className={styles.userWrap}> <User key={i} user={el}/> </div> )} 
+                            {followers.map( (el,i) => <div key={i} className={styles.userWrap}> <User user={el}/> </div> )} 
                         </div>
                     }
                     { followList === 'following' && 
                         <div> 
-                            {following.map( (el,i) => <div className={styles.userWrap}> <User key={i} user={el}/> </div>  )}   
+                            {following.map( (el,i) => <div key={i} className={styles.userWrap}> <User user={el}/> </div>  )}   
                         </div>
                     }
                 </div>

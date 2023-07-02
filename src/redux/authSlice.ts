@@ -1,61 +1,68 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { RegisterType, authMeAPI, loginAPI, registerAPI } from '../api/auth-api'
-import { RegisterRes } from '../types/resTypes'
-import { fetchDeleteProfile } from './profileSlice'
-import { FormValues } from '../components/Register/Login/Login'
+import { RegisterType, authMeAPI, loginAPI, registerAPI, deleteProfileAPI } from '../api/auth-api'
+import { AuthMeRes, RegisterRes } from '../types/resTypes'
+import { ILoginFields } from '../components/Register/Login/Login'
 
-export const fetchRegister = createAsyncThunk(
-    'fetchRegister',
-    async (obj: RegisterType, {rejectWithValue} ) => {
+export const fetchRegister = createAsyncThunk<RegisterRes, RegisterType, {rejectValue: string }>(
+    'auth/fetchRegister',
+    async (obj, {rejectWithValue} ) => {
         try {
             const response = await registerAPI(obj)
-            if(response.status === 200) {
-                return response.data
-            }
+            return response.data
         } catch(err:any) {
-            if (!err.response) {
-                throw err
-            }
-            console.log(err)
-            return rejectWithValue(err.response.data)
+            return rejectWithValue(err.response.data.message)
         }
     }
 )
 
-export const fetchLogin = createAsyncThunk(
-    'fetchLogin', 
-    async (obj: FormValues, { rejectWithValue }) => {
-        try {
+export const fetchLogin = createAsyncThunk<RegisterRes, ILoginFields, {rejectValue: string}>(
+    'auth/fetchLogin', 
+    async (obj, { rejectWithValue }) => {
+        try{
             const { email, password } = obj
             const response = await loginAPI({email, password})
-            if(response.status === 200) {
-                return response.data
-            } 
+            return response.data
         } catch(err:any) {
-            if (!err.response) {
-                throw err
-            }
             console.log(err)
-            return rejectWithValue(err.response.data)
+            return rejectWithValue(err.response.data.message)
         }
     }
 )
 
-export const fetchAuthMe = createAsyncThunk(
-    'fetchAuthMe', 
-    async () => {
-        const response = await authMeAPI()
-        return response.data
+export const fetchAuthMe = createAsyncThunk<AuthMeRes, undefined, {rejectValue: string}>(
+    'auth/fetchAuthMe', 
+    async (_, {rejectWithValue}) => {
+        try {
+            const response = await authMeAPI()
+            return response.data
+        } catch(err:any) {
+            console.log(err)
+            return rejectWithValue(err.response.data)
+        }  
+    }
+)
+
+export const fetchDeleteProfile = createAsyncThunk<void, string | undefined, {rejectValue: string}>(
+    'auth/fetchDeleteProfile', 
+    async( _id, {rejectWithValue}) => {
+        try {
+            await deleteProfileAPI(_id)
+        } catch(err:any) {
+            console.log(err)
+            return rejectWithValue(err.message)
+        } 
     }
 )
 
 type State = {
+    loading: boolean
     isAuth: boolean,
-    currentUser: null | RegisterRes
-    error: null | string
+    currentUser: null | RegisterRes | AuthMeRes
+    error: null | string | undefined
 }
 
 const initialState: State = {
+    loading: false,
     isAuth: false,
     currentUser: null,
     error: null
@@ -74,45 +81,79 @@ const authSlice = createSlice({
             state.error = null
         }
     },
-    extraReducers: {
-        //----------REGISTER--------------
-        [fetchRegister.pending.type]: (state) => {
+    extraReducers: (builder) => {
+        //----------REGISTER--------------//
+        builder
+        .addCase( fetchRegister.pending, (state) => {
+            state.error = null;
+            state.loading = true;
+        })
+        .addCase( fetchRegister.fulfilled, (state, action) => {
+            state.error = null;
+            state.loading = false;
+            state.currentUser = action.payload;
+            state.isAuth = true;
+        })
+        .addCase( fetchRegister.rejected, (state, action) => {
+            state.loading = false;
+            state.isAuth = false;
+            state.error = action.payload
+        })
+        //----------LOGIN------------------//
+        .addCase( fetchLogin.pending, (state) => {
+            state.loading = true
             state.error = null
-        },
-        [fetchRegister.fulfilled.type]: (state, action) => {
-            state.currentUser = action.payload
-            state.isAuth = true
-            localStorage.setItem('token', action.payload.token )
-        },
-        [fetchRegister.rejected.type]: (state, action) => {
+            state.currentUser = null
             state.isAuth = false
-            state.error = action.payload.message
-        },
-        // --------LOGIN------------------
-        [fetchLogin.pending.type]: (state, action) => {
-            state.error = null
-        },
-        [fetchLogin.fulfilled.type]: (state, action) => {
+        })
+        .addCase( fetchLogin.fulfilled, (state, action) => {
+            state.loading = false
             state.error = null
             state.currentUser = action.payload
             state.isAuth = true
             if(action.meta.arg.rememberMe) {
                 localStorage.setItem('token', action.payload.token )
             }
-        },
-        [fetchLogin.rejected.type]: (state, action) => {
+        })
+        .addCase( fetchLogin.rejected, (state, action) => {
+            state.loading = false
             state.isAuth = false
-            state.error = action.payload.message
-        },
-        //----------AUTH----------------
-        [fetchAuthMe.fulfilled.type]: (state, action) => {
-            state.currentUser = action.payload
-            state.isAuth = true
-        },
-        [fetchDeleteProfile.fulfilled.type]: (state, action) => {
+            state.currentUser = null
+            state.error = action.payload
+        })
+        //--------------AUTHME-----------//
+        .addCase( fetchAuthMe.pending, (state, action) => {
+            state.loading = true
             state.currentUser = null
             state.isAuth = false
-        },
+            state.error = null
+        })
+        .addCase( fetchAuthMe.fulfilled, (state, action) => {
+            console.log(action.payload)
+            state.currentUser = action.payload
+            state.isAuth = true
+            state.loading = false
+            state.error = null
+        })
+        .addCase( fetchAuthMe.rejected, (state) => {
+            state.currentUser = null
+            state.isAuth = false
+            state.error = 'Error auth'
+        })
+
+        // //--------------DELETE PROFILE-------------//
+        .addCase( fetchDeleteProfile.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase( fetchDeleteProfile.fulfilled, (state) => {
+            state.loading = false;
+            state.currentUser = null;
+            state.isAuth = false;
+            window.localStorage.removeItem('token');
+        })
+        .addCase( fetchDeleteProfile.rejected, (state, action) => {
+            state.loading = false
+        })
     }
 })
 

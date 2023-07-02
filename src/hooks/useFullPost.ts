@@ -10,6 +10,7 @@ export const useFullPost = (postId:string | undefined, postData:PostsRes | undef
         if(postId) {
             getOnePostAPI(postId)
             .then( res => setData(res.data) )
+            .catch( (err) => alert(err))
         }
     }, [postId])
 

@@ -27,3 +27,8 @@ export const authMeAPI = async () => {
     const res = await instance.get<AuthMeRes>('/auth/me')
     return res
 }
+
+export const deleteProfileAPI = async (_id: string | undefined) => {
+    const res = await instance.delete(`profiles/${_id}`)
+    return res
+}

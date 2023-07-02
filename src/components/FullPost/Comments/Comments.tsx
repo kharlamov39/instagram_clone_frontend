@@ -15,19 +15,32 @@ const Comments:React.FC<Props> = ({postId}) => {
     const [ text, setText ] = useState<string>('')
     const [ data, setData ] = useState<[] | PostCommentsRes[]>([])
 
-    const addComment = async () => {
-        await createCommentAPI({postId, text})
-        setText('')
-        getComments()
+    const showComments = ():void => setIsComments(true)
+    const hideComments = ():void => setIsComments(false)
+    
+    const fetchComments = () => { // получение комментариев поста
+        getPostCommentsAPI(postId)
+        .then((res) => setData(res.data))
+        .catch((err) => {
+            alert(err)
+            setIsComments(false)
+        })
     }
 
-    const getComments = () => {
-        getPostCommentsAPI(postId).then((res) => setData(res.data))
+    const addComment =  () => { // добавление комментария
+        createCommentAPI({postId, text})
+        .then( (res) => {
+            setText('')
+            fetchComments()
+        } )
+        .catch((err) => {
+            alert(err)
+        } )
     }
 
     useEffect( () => {
         if(isComments) {
-            getComments()
+            fetchComments()
         }
     }, [isComments, postId])
 
@@ -39,7 +52,7 @@ const Comments:React.FC<Props> = ({postId}) => {
                         placeholder='Ваш комментарий...' 
                         className={styles.input} 
                         value={text} 
-                        onChange={(e) => setText(e.target.value)}
+                        onChange={(e:React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
                     /> 
                 }
                 { text.length > 0 && 
@@ -51,8 +64,8 @@ const Comments:React.FC<Props> = ({postId}) => {
             <div className={styles.buttonsWrap}>
                 {
                     isComments 
-                    ? <button onClick={ () => setIsComments(false)} className={styles.button} > Скрыть комментарии</button> 
-                    : <button onClick={ () => setIsComments(true)} className={styles.button} > Показать комментарии</button>
+                    ? <button onClick={ hideComments } className={styles.button} > Скрыть комментарии</button> 
+                    : <button onClick={ showComments } className={styles.button} > Показать комментарии</button>
                 }
             </div>
             { isComments && 

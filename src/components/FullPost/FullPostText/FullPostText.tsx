@@ -13,9 +13,10 @@ const FullPostText:React.FC<Props> = ({text, editMode, setEditMode, postId}) => 
 
     const [ postText, setPostText ] = useState(text)
 
-    const handleEditPost = async () => {
-        await editPostAPI(postId, postText)
-        setEditMode(false)
+    const saveChanging = () => {
+        editPostAPI(postId, postText)
+        .then( (res) => setEditMode(false))
+        .catch((err) => alert(err) ) 
     }
 
     return (
@@ -30,7 +31,7 @@ const FullPostText:React.FC<Props> = ({text, editMode, setEditMode, postId}) => 
                         className={styles.input}
                         maxLength={100}
                     />
-                    <button className={styles.button} onClick={handleEditPost}> Сохранить</button>
+                    <button className={styles.button} onClick={saveChanging}> Сохранить</button>
                 </> 
                 : postText
             } 

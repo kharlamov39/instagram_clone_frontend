@@ -1,13 +1,13 @@
-import { MessageShort } from "../types/resTypes";
+import { DialogsRes, MessageShort } from "../types/resTypes";
 import { instance } from "./api";
 
 export const fetchDialogsAPI = async () => {
-    const res = await instance.get('/chat')
+    const res = await instance.get<DialogsRes[]>('/chat')
     return res
 }
 
 export const allMessagesAPI = async (chatId:string) => {
-    const res = await instance.get(`/message/${chatId}`)
+    const res = await instance.get<MessageShort[]>(`/message/${chatId}`)
     return res
 }
 

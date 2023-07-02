@@ -7,12 +7,20 @@ import Button from "../../Button/Button";
 import styles from './Signup.module.css'
 import { useState } from "react"; 
 import InputPassword from "../../InputPassword/InputPassword";
+import { RegisterType } from "../../../api/auth-api";
 
 const Signup = () => {
 
     const [ showPass, setShowPass ] = useState<'password' | 'text'>('password')
 
     const dispatch = useAppDispatch()
+
+    const initialValues:RegisterType = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    }
 
     const SignupSchema = Yup.object().shape({
         firstName: Yup.string()
@@ -33,12 +41,7 @@ const Signup = () => {
         <div className={styles.formWrap}>
             <h1>Signup</h1>
             <Formik
-                initialValues={{
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    password: ''
-                }}
+                initialValues={initialValues}
                 validationSchema={SignupSchema}
                 onSubmit={values => {
                     dispatch(fetchRegister(values));

@@ -13,7 +13,6 @@ type Props = {
     currentDialog: string | undefined
 }
 
-
 // var socket = io(`${process.env.REACT_APP_API_URL}`)
 var ENDPOINT = 'https://instagram-clone-backend-2.onrender.com'
 var socket = io(ENDPOINT)

@@ -2,32 +2,42 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DialogsRes, MessageShort } from "../types/resTypes";
 import { allMessagesAPI, fetchDialogsAPI } from "../api/dialog-api";
 
-
-export const fetchDialogs = createAsyncThunk(
+export const fetchDialogs = createAsyncThunk<DialogsRes[], undefined, { rejectValue: string }>(
     'fetchDialogs',
-    async () => {
-        const res = await fetchDialogsAPI()
-        return res.data
+    async (_, { rejectWithValue }) => {
+        try {
+            const res = await fetchDialogsAPI()
+            return res.data
+        } catch(err:any) {
+            return rejectWithValue(err.message)
+        }   
     } 
 )
 
-export const fetchAllChatMessages = createAsyncThunk(
+export const fetchAllChatMessages = createAsyncThunk<MessageShort[], string, {rejectValue: string}>(
     'fetchAllChatMessages',
-    async(currentDialog:string) => {
-        const res = await allMessagesAPI(currentDialog)
-        return res.data
+    async(currentDialog, {rejectWithValue}) => {
+        try {
+            const res = await allMessagesAPI(currentDialog)
+            return res.data
+        } catch(err:any) {
+            return rejectWithValue(err.message)
+        }
     }
 )
 
-
 type State = {
-    dialogs: DialogsRes[],
+    dialogs: DialogsRes[]
     activeChatData: MessageShort[]
+    error: null | string | undefined
+    loading: boolean
 }
 
 const initialState:State = {
     dialogs: [],
-    activeChatData: []
+    activeChatData: [],
+    error: null,
+    loading: false
 }
 
 const dialogSlice = createSlice({
@@ -38,15 +48,34 @@ const dialogSlice = createSlice({
             state.activeChatData.push(action.payload);
         }
     },
-    extraReducers: {
+    extraReducers: (builder) => {
+        builder
         //--------Загрузка всех диалогов пользователя-----------//
-        [fetchDialogs.fulfilled.type]: (state, action) => {
-            state.dialogs = action.payload
-        },
-        //-------Загрузка сообщений выбранного диалога----------//
-        [fetchAllChatMessages.fulfilled.type]: (state, action) => {
-            state.activeChatData = action.payload
-        }
+        .addCase( fetchDialogs.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase( fetchDialogs.fulfilled, (state, action) => {
+            state.dialogs = action.payload;
+            state.loading = false;
+        })
+        .addCase( fetchDialogs.rejected, (state, action) => {
+            state.error = action.payload;
+            state.loading = false
+        })
+
+        // //-------Загрузка сообщений выбранного диалога----------//
+        .addCase( fetchAllChatMessages.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        } )
+        .addCase( fetchAllChatMessages.fulfilled, (state, action) => {
+            state.activeChatData = action.payload;
+        } )
+        .addCase( fetchAllChatMessages.rejected, (state, action) => {
+            state.error = action.payload;
+            state.loading = false
+        } )
         
     }
 })

@@ -1,6 +1,4 @@
-
-
-export interface RegisterRes {
+export interface RegisterRes {  // интерфейс для логинизации и регистрации
     firstName: string
     lastName: string
     email: string
@@ -12,16 +10,7 @@ export interface RegisterRes {
 	following: string[]
 }
 
-export interface AuthMeRes {
-    firstName: string
-    lastName: string
-    email: string
-    _id: string,
-	avatar: string
-	followers: string[] 
-	following: string[]
-}
-// ---------------------------------------------
+export type AuthMeRes = Omit<RegisterRes, 'token'> // интерфейс для аунтефикации
 
 export interface UserRes {
     _id: string
@@ -45,7 +34,7 @@ export interface PostsRes {
 export interface AllPostsRes {
 	currentPage: number
 	limit: number
-	totalPage: number
+	totalPages: number
 	totalPosts: number
 	posts: PostsRes[]
 }

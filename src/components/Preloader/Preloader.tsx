@@ -1,26 +1,13 @@
-import preloader from '../../assets/preloader.gif'
 import styles from './Preloader.module.css'
 
 const Preloader = () => {
     return (
-        <div className={styles.main}>
-            {/* <img src={preloader} alt="preloader" /> */}
-            <div className={styles.block}>
-                <div className={styles.blockIn}>
-
-                </div>
-                <div className={styles.blockIn}>
-
-                </div>
-                <div className={styles.blockIn}>
-
-                </div>
-                <div className={styles.blockIn}>
-
-                </div>
+        <div className={styles.preloader}>
+            <div className={styles.row}>
+                <div className={styles.item}></div>
+                <div className={styles.item}></div>
             </div>
         </div>
-        
     )
 }
 

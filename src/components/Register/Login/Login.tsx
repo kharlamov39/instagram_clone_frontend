@@ -7,7 +7,7 @@ import Button from "../../Button/Button";
 import styles from './Login.module.css'
 import InputPassword from "../../InputPassword/InputPassword";
 
-export interface FormValues {
+export interface ILoginFields {
     email: string
     password: string
     rememberMe: boolean
@@ -16,7 +16,7 @@ export interface FormValues {
 const Login = () => {
     const dispatch = useAppDispatch()
 
-    const initialValues:FormValues = {
+    const initialValues:ILoginFields = {
         email: '',
         password: '',
         rememberMe: true

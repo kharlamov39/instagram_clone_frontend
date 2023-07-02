@@ -1,34 +1,69 @@
-.main {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.block {
-    height: 50px;
-    width: 50%;
-    background-color: rgba(128, 128, 128, 0.603);
-    border-radius: 50px;
-    display: flex;
-}
-
-.blockIn {
-    height: 100%;
-    width: 50px;
-    margin-right: 20px;
-    background-color: rgb(0, 0, 0);
-    animation-name: move;
-    animation-duration: 3s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear; 
-}
-
-@keyframes move {
-	from {
-		margin-left: 0px;
-	}
-	to {
-		margin-left: 400px;
-	}
-}
+.preloader {
+    /*фиксированное позиционирование*/
+    position: fixed;
+    /* координаты положения */
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* фоновый цвет элемента */
+    background: #00000000;
+    /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+    z-index: 10010;
+  }
+  
+  .row {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    margin-top: -35px;
+    margin-left: -35px;
+    text-align: center;
+    animation: preloader-rotate 2s infinite linear;
+  }
+  
+  .item {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    background-color: #337ab7;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    animation: preloader-bounce 2s infinite ease-in-out;
+  }
+  
+  .item:last-child {
+    top: auto;
+    bottom: 0;
+    animation-delay: -1s;
+  }
+  
+  @keyframes preloader-rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes preloader-bounce {
+  
+    0%,
+    100% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1);
+    }
+  }
+  
+  /* .loaded_hiding .preloader {
+    transition: 0.3s opacity;
+    opacity: 0;
+  }
+  
+  .loaded .preloader {
+    display: none;
+  } */

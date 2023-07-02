@@ -5,6 +5,7 @@ import Signup from "./Signup/Signup";
 import Login from "./Login/Login";
 import { useTypedSelector } from "../../hooks/hooks";
 import ModalError from "./ModalError/ModalError";
+import Preloader from "../Preloader/Preloader";
 
 type RegisterProp = {
     isAuth: boolean
@@ -12,10 +13,14 @@ type RegisterProp = {
 
 const Register:React.FC<RegisterProp> = ({isAuth}) => {
     const [ isAccount, setIsAccount] = useState<boolean>(false)
-    const { error } = useTypedSelector(state => state.auth) 
+    const { error, loading } = useTypedSelector(state => state.auth) 
 
     if(isAuth) {
         return <Navigate to='/' />
+    }
+
+    if(loading) {
+        return <Preloader />
     }
 
     return (
@@ -35,7 +40,7 @@ const Register:React.FC<RegisterProp> = ({isAuth}) => {
                     </div>
                 </div>
             } 
-            { error && <ModalError /> }   
+            { error && <ModalError error={error}/> }   
         </div>
     )
 }

@@ -4,9 +4,12 @@ import Button from '../../Button/Button'
 import styles from './ModalError.module.css'
 import modalError from '../../../assets/modalError.png'
 
-const ModalError = () => {
+type Props = {
+    error: string
+}
+
+const ModalError:React.FC<Props> = ({error}) => {
     const dispatch = useAppDispatch()
-    const { error } = useTypedSelector(state => state.auth)
 
     const closeModal = () => {
         dispatch(closeModalError())

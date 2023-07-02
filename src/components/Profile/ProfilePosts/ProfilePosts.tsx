@@ -11,7 +11,7 @@ const ProfilePosts:React.FC<ProfilePostsProps> = ({posts}) => {
     return (
         <div>
             <div className={styles.grid}>
-                { posts.map( el => <Post key={el._id} post={el} /> )}
+                { posts.map( (el, i) => <Post key={i} post={el} /> )}
             </div>
         </div>
     )

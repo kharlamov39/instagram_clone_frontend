@@ -39,7 +39,7 @@ const Profile = () => {
             </>
              }
 
-            { isMyProfile === false && 
+            { isMyProfile === false && currentUser?._id &&
              <>
                 <ProfileInfo profile={profile}/>
                 <div className={styles.buttons}>

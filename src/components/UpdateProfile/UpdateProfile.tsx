@@ -5,10 +5,11 @@ import styles from "./UpdateProfile.module.css";
 import * as Yup from "yup";
 import { useRef, useState } from "react";
 import { instance } from "../../api/api";
-import { fetchUpdateProfile, fetchDeleteProfile } from "../../redux/profileSlice";
+import { fetchUpdateProfile } from "../../redux/profileSlice";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import camera from "../../assets/camera.png";
+import { fetchDeleteProfile } from "../../redux/authSlice";
 
 const UpdateProfile = () => {
     const currentId = useTypedSelector(state => state.auth.currentUser?._id)

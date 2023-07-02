@@ -1,14 +1,14 @@
-import { useRef, useState } from 'react'
-import { instance } from '../../../api/api'
-import { createPostAPI } from '../../../api/post-api'
-import deletePhoto from '../../../assets/deletePhoto.png'
-import styles from './CreatePost.module.css'
-import camera from '../../../assets/camera.png'     
-import { useAppDispatch } from '../../../hooks/hooks'
-import { fetchProfile } from '../../../redux/profileSlice'
-import { useParams } from 'react-router-dom'
-import Button from '../../Button/Button'
-import check from '../../../assets/check.png'
+import { useRef, useState } from 'react';
+import { instance } from '../../../api/api';
+import { createPostAPI } from '../../../api/post-api';
+import deletePhoto from '../../../assets/deletePhoto.png';
+import styles from './CreatePost.module.css';
+import camera from '../../../assets/camera.png';
+import { useAppDispatch } from '../../../hooks/hooks';
+import { fetchProfile } from '../../../redux/profileSlice';
+import { useParams } from 'react-router-dom';
+import Button from '../../Button/Button';
+import check from '../../../assets/check.png';
 
 const CreatePost = () => {
     const { id } = useParams()
@@ -17,22 +17,26 @@ const CreatePost = () => {
     const dispatch = useAppDispatch()
     const fileRef = useRef<HTMLInputElement>(null)
 
-    const handleFileChange = async (e:any) => {
+    const handleFileChange = async (e:any):Promise<void> => {
         try {
             const formData = new FormData()
             formData.append('image', e.target.files[0])
             const { data } = await instance.post('/upload', formData)
             setImage(data.url)
         } catch(err) {
-            alert('Не удалось загрузить фото')
+            alert(err)
         }
     }
 
-    const addPost = async () => {
-        await createPostAPI({text, image})
-        dispatch( fetchProfile(id))
-        setImage('')
-        setText('')
+    const addPost = async ():Promise<void> => {
+        try {
+            await createPostAPI({text, image})
+            dispatch( fetchProfile(id))
+            setImage('')
+            setText('')
+        } catch(err) {
+            alert(err)
+        }
     }
 
     return (

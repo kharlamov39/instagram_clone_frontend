@@ -4,9 +4,8 @@ import avatar from '../../../assets/avatar.jpg'
 import { Link } from 'react-router-dom'
 import Button from '../../Button/Button'
 import { useAppDispatch } from '../../../hooks/hooks'
-import { fetchFollowers, fetchFollowing } from '../../../redux/profileSlice'
-import FollowList from '../FollowList/FollowList'
-import { useState } from 'react'
+import { useState, Suspense, lazy } from 'react';
+const FollowList = lazy( () => import ('../FollowList/FollowList')) 
 
 type Props = {
     profile: GetProfileRes | null
@@ -18,11 +17,11 @@ const ProfileInfo:React.FC<Props> = ({profile, isMyProfile}) => {
     const [ followList, setFollowList ] = useState<'followers' | 'following' | 'none'>('none')
 
     const handleFetchFollowers = ():void => {
-            setFollowList('followers')
+        setFollowList('followers')
     } 
 
     const handleFetchFollowing = ():void => {
-            setFollowList('following')
+        setFollowList('following')
     }
 
 
@@ -47,7 +46,11 @@ const ProfileInfo:React.FC<Props> = ({profile, isMyProfile}) => {
                     <div>
                         <button onClick={handleFetchFollowing}> Following: {profile?.following.length} </button>
                     </div>
-                    { followList !== 'none' && <FollowList setFollowList={setFollowList} followList={followList} userId={profile?._id}/> }
+                    { followList !== 'none' && 
+                        <Suspense fallback={<div>Loading</div>}>
+                            <FollowList setFollowList={setFollowList} followList={followList} userId={profile?._id}/>
+                        </Suspense>
+                     }
                 </div>
             </div>
             

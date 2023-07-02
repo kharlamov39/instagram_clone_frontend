@@ -4,14 +4,13 @@ import { useState } from 'react'
 
 type Props = {
     removePost: () => void
-    setEditMode: any
+    setEditMode: (arg:boolean) => void
 }
 
 const Popup:React.FC<Props> = ({removePost,  setEditMode}) => {
     const [ popup, setPopup ] = useState<boolean>(false)
 
-
-    const handleEdit = () => {
+    const editPost = () => {
         setEditMode(true)
         setPopup(false)
     }
@@ -30,7 +29,7 @@ const Popup:React.FC<Props> = ({removePost,  setEditMode}) => {
                     <button className={styles.removeBtn} onClick={removePost}>Удалить</button>
                 </div>
                 <div>
-                    <button className={styles.editBtn} onClick={ handleEdit}>Редактировать</button>
+                    <button className={styles.editBtn} onClick={ editPost}>Редактировать</button>
                 </div>
             </div>
             }

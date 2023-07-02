@@ -8,22 +8,19 @@ import Preloader from "../Preloader/Preloader";
 const Home:React.FC = () => {
     const [ page, setPage ] = useState<number>(1)
     const allPosts = useGetPosts(page)
-    const { totalPage } = useTypedSelector(state => state.post)
-    const { loading } = useTypedSelector(state => state.post )
+    const { totalPages } = useTypedSelector(state => state.post)
+    const { loading, error } = useTypedSelector(state => state.post )
 
     const incrementPage = () => setPage(prev => prev + 1)
 
-    if(!allPosts.length) {
-        return <Preloader />
-    }
-
     return (
         <div>
+            { error && <h2> {error} </h2> }
             { allPosts.map( (el, i) => (
                 <FullPost key={el._id} postData={el} modal='modalHome' />
             )) }
 
-            { totalPage > page && 
+            { totalPages > page && 
             <button className={styles.button} onClick={incrementPage}>ДАЛЕЕ</button>
             }
 
