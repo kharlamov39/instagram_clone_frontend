@@ -9,7 +9,8 @@ import { fetchDialogs } from './redux/dialogsSlice';
 import { MessageShort } from './types/resTypes';
 import io from 'socket.io-client'
 import Preload from './components/Preloader/Preloader';
-const Profile = lazy( () => import ('./components/Profile/Profile'));
+import { lazyRetry } from './utils/lazyRetry';
+const Profile = lazy( () => lazyRetry( () => import ('./components/Profile/Profile'), 'Profile' ) );
 const Register = lazy( () => import ('./components/Register/Register'));
 const Dialogs = lazy( () => import ('./components/Dialogs/Dialogs'));
 const Home = lazy( () => import ('./components/Home/Home'));
