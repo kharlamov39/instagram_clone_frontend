@@ -11,12 +11,18 @@ import io from 'socket.io-client'
 import Preload from './components/Preloader/Preloader';
 import { lazyRetry } from './utils/lazyRetry';
 const Profile = lazy( () => lazyRetry( () => import ('./components/Profile/Profile'), 'Profile' ) );
-const Register = lazy( () => import ('./components/Register/Register'));
-const Dialogs = lazy( () => import ('./components/Dialogs/Dialogs'));
-const Home = lazy( () => import ('./components/Home/Home'));
-const FullPostModal = lazy( () => import ('./components/FullPostModal/FullPostModal'));
-const UpdateProfile = lazy( () => import ('./components/UpdateProfile/UpdateProfile'));
-const Logout = lazy( () => import ('./components/Logout/Logout'));
+const Register = lazy( () => lazyRetry( () => import ('./components/Register/Register'), 'Register' ) );
+const Dialogs = lazy( () => lazyRetry( () => import ('./components/Dialogs/Dialogs'), 'Dialogs' ) );
+const Home = lazy( () => lazyRetry( () => import ('./components/Home/Home'), 'Home' ) );
+const FullPostModal = lazy( () => lazyRetry( () => import ('./components/FullPostModal/FullPostModal'), 'FullPostModal' ) );
+const UpdateProfile = lazy( () => lazyRetry( () => import ('./components/UpdateProfile/UpdateProfile'), 'UpdateProfile' ) );
+const Logout = lazy( () => lazyRetry( () => import ('./components/Logout/Logout'), 'Logout' ) );
+// const Register = lazy( () => import ('./components/Register/Register'));
+// const Dialogs = lazy( () => import ('./components/Dialogs/Dialogs'));
+// const Home = lazy( () => import ('./components/Home/Home'));
+// const FullPostModal = lazy( () => import ('./components/FullPostModal/FullPostModal'));
+// const UpdateProfile = lazy( () => import ('./components/UpdateProfile/UpdateProfile'));
+// const Logout = lazy( () => import ('./components/Logout/Logout'));
 
 
 var ENDPOINT = 'https://instagram-clone-backend-2.onrender.com'
