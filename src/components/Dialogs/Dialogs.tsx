@@ -32,9 +32,9 @@ const Dialogs = () => {
                 { dialogs.map( (el, i) => <DialogItem key={el._id} chatInfo={el} /> ) }
             </div>
 
-            <Routes>
+            {/* <Routes>
                 <Route path='/:currentDialog' element={ <Chat  />} />
-            </Routes>
+            </Routes> */}
             
         </div>
     )

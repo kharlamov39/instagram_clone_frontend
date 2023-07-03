@@ -22,8 +22,8 @@ const DialogItem:React.FC<Props> = ({chatInfo}) => {
         <div onClick={openDialog} >
             <div className={styles.item}  >
                 <User user={user[0]}/>
-                { chatInfo.latestMessage.sender._id === myUserId && <span className={styles.span}>You: </span> } 
-                { chatInfo.latestMessage.content  }
+                { chatInfo.latestMessage?.sender?._id === myUserId && <span className={styles.span}>You: </span> } 
+                { chatInfo.latestMessage?.content  }
             </div>
         </div>    
     )
