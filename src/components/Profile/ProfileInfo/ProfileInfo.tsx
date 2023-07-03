@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 import Button from '../../Button/Button'
 import { useAppDispatch } from '../../../hooks/hooks'
 import { useState, Suspense, lazy } from 'react';
-const FollowList = lazy( () => import ('../FollowList/FollowList')) 
+import { lazyRetry } from '../../../utils/lazyRetry'  
+const FollowList = lazy( () => lazyRetry( () => import ('../FollowList/FollowList'), 'FollowList' ) );
 
 type Props = {
     profile: GetProfileRes | null
