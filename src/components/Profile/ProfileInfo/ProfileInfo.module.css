@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .profileInfo {
@@ -70,6 +70,6 @@
         margin-bottom: 5px;
     }
     .nameInfo {
-        margin-right: 5px;
+        margin-bottom: 5px;
     }
 }

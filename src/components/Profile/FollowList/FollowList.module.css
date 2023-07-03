@@ -8,11 +8,12 @@
     background-color: rgba(51, 50, 50, 0.671);
     z-index: 9999;
     padding-top: 100px;
+    overflow-y: scroll;
     
 }
 
 .container {
-    width: 400px;
+    max-width: 400px;
     background-color: rgb(0, 0, 0);
     border: 1px solid rgba(139, 139, 139, 0.384);
     margin: 0 auto;
@@ -55,4 +56,12 @@
 
 .userWrap {
     margin-bottom: 5px;
+}
+
+@media (max-width: 500px) {
+    .btnToggler {
+        padding: 10px 10px;
+        border: 1px solid rgb(112, 112, 112);
+        border-top: none;
+    }
 }

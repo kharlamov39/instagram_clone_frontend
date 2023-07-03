@@ -19,6 +19,7 @@
 
 .burger {
     display: none;
+    margin-right: 10px;
 }
 
 .menu a {
