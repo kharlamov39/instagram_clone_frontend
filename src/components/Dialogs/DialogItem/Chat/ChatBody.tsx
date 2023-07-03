@@ -30,7 +30,7 @@ const ChatBody:React.FC<Props> = ({activeChatData, currentDialog}) => {
     }
 
     useEffect( () => {
-        socket.on('response', (data) => dispatch(addMessage(data)) )
+        socket.on('res', (data) => dispatch(addMessage(data)) )
     }, [])
 
     useEffect ( () => {
