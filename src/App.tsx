@@ -10,6 +10,8 @@ import { MessageShort } from './types/resTypes';
 import io from 'socket.io-client'
 import Preload from './components/Preloader/Preloader';
 import { lazyRetry } from './utils/lazyRetry';
+import ChatBody from './components/Dialogs/DialogItem/Chat/ChatBody';
+import Chat from './components/Dialogs/DialogItem/Chat/Chat';
 const Profile = lazy( () => lazyRetry( () => import ('./components/Profile/Profile'), 'Profile' ) );
 const Register = lazy( () => lazyRetry( () => import ('./components/Register/Register'), 'Register' ) );
 const Dialogs = lazy( () => lazyRetry( () => import ('./components/Dialogs/Dialogs'), 'Dialogs' ) );
@@ -55,6 +57,7 @@ const App = () => {
             <Route path='/profile/:id/:postId' element={  <FullPostModal modal='modal' btnClose /> } />
             <Route path='/profile/:id/update' element={ <Protected currentId={currentUser?._id}> <UpdateProfile /> </Protected>   } />
             <Route path='/dialogs/*' element={ <Dialogs /> } />
+            <Route path='/dialogs/:currentDialog' element={ <Chat /> } />
             <Route path='/logout' element={  <Logout />   } />
             <Route path='/register' element={ <Register isAuth={isAuth}/> } />
         </Routes>

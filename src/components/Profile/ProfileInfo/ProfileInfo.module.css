@@ -64,6 +64,7 @@
     }
     .profile {
         flex-direction: column;
+        margin-bottom: 10px;
     }
     .avatar {
         margin-right: 0;

@@ -1,5 +1,5 @@
 .chatBody {
-    width: 500px;
+    max-width: 500px;
     background-color: rgba(87, 87, 87, 0.479);
     padding: 30px;
     border-radius: 10px;
@@ -9,7 +9,7 @@
 }
 
 .messagesWrap {
-    height: 500px;
+    height: 50vh;
     overflow-y: scroll;
 }
 
