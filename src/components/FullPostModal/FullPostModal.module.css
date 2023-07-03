@@ -8,4 +8,5 @@
     background-color: rgba(51, 50, 50, 0.671);
     z-index: 9999;
     padding-top: 100px;
+    overflow-y: scroll;
 }
