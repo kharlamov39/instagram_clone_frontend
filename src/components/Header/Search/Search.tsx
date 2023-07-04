@@ -35,6 +35,7 @@ const Search = () => {
                 value={search} 
                 onChange={ (e:React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} 
                 onClick={ () => setPopup(true)}  
+                placeholder="Enter lastname..."
             />
             {/* <img src={loupe} alt="loupe" className={styles.loupe}/> */}
 
