@@ -48,7 +48,7 @@ const ProfileInfo:React.FC<Props> = ({profile, isMyProfile}) => {
                         <button onClick={handleFetchFollowing}> Following: {profile?.following.length} </button>
                     </div>
                     { followList !== 'none' && 
-                        <Suspense fallback={<div>Loading</div>}>
+                        <Suspense>
                             <FollowList setFollowList={setFollowList} followList={followList} userId={profile?._id}/>
                         </Suspense>
                      }
