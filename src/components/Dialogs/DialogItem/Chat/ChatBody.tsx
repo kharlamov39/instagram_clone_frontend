@@ -1,12 +1,12 @@
 import { sendMessageAPI } from '../../../../api/dialog-api';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import io from 'socket.io-client';
 import { MessageShort } from '../../../../types/resTypes';
 import Message from './Message/Message';
 import Button from '../../../Button/Button';
 import styles from './ChatBody.module.css'
 import { useAppDispatch } from '../../../../hooks/hooks';
-import { addMessage } from '../../../../redux/dialogsSlice';
+import { addMessage, clearChat } from '../../../../redux/dialogsSlice';
 
 type Props = {
     activeChatData: MessageShort[]
@@ -30,13 +30,18 @@ const ChatBody:React.FC<Props> = ({activeChatData, currentDialog}) => {
     }
 
     useEffect( () => {
-        socket.on('res', (data) => dispatch(addMessage(data)) )
+        const messageReceived = (data:any) => dispatch(addMessage(data));
+        socket.on('res', messageReceived );
+        return () => {
+            socket.off('res', messageReceived);
+        }
     }, [])
 
     useEffect ( () => {
         if(messageWrapRef.current) {
             messageWrapRef.current.scrollTop = messageWrapRef.current?.scrollHeight // скролл чата всегда книзу, в том числе при добавлении сообщений
-        }   
+        }
+         
     }, [activeChatData])
 
     return (

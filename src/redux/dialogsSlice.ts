@@ -45,7 +45,13 @@ const dialogSlice = createSlice({
     initialState,
     reducers: {
         addMessage: (state, action) => {
-            state.activeChatData.push(action.payload);
+            if(!state.activeChatData.find(el => el._id === action.payload._id)) {
+                state.activeChatData.push(action.payload);
+            }
+            console.log('ADD')
+        },
+        clearChat: (state) => {
+            state.activeChatData = [];
         }
     },
     extraReducers: (builder) => {
@@ -80,6 +86,6 @@ const dialogSlice = createSlice({
     }
 })
 
-export const { addMessage } = dialogSlice.actions
+export const { addMessage, clearChat } = dialogSlice.actions
 
 export default dialogSlice.reducer

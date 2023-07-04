@@ -5,8 +5,6 @@ import { Routes, Route} from "react-router-dom"
 import { useAppDispatch, useTypedSelector } from "./hooks/hooks";
 import { fetchAuthMe } from './redux/authSlice';
 import Protected from './components/Protected/Protected';
-import { fetchDialogs } from './redux/dialogsSlice';
-import { MessageShort } from './types/resTypes';
 import io from 'socket.io-client'
 import Preload from './components/Preloader/Preloader';
 import { lazyRetry } from './utils/lazyRetry';
@@ -27,7 +25,7 @@ const Logout = lazy( () => lazyRetry( () => import ('./components/Logout/Logout'
 // const Logout = lazy( () => import ('./components/Logout/Logout'));
 
 
-var ENDPOINT = 'https://instagram-clone-backend-2.onrender.com'
+// var ENDPOINT = 'https://instagram-clone-backend-2.onrender.com'
 
 const App = () => {
 
@@ -41,10 +39,10 @@ const App = () => {
   }, [])
 
 
-  useEffect( () => {
-    const socket = io(ENDPOINT)
-    socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
-}, [])
+//   useEffect( () => {
+//     const socket = io(ENDPOINT)
+//     socket.on('res', (data :MessageShort) => dispatch(fetchDialogs()) )
+// }, [])
 
   return (
     <div className="App">

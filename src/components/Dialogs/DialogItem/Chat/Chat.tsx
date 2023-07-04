@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ChatBody from './ChatBody'
+import io from 'socket.io-client';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useTypedSelector } from '../../../../hooks/hooks'
 import { fetchAllChatMessages } from '../../../../redux/dialogsSlice'
@@ -10,6 +11,9 @@ const Chat:React.FC = () => {
     const dispatch = useAppDispatch()
     const { currentDialog } = useParams()
     const navigate = useNavigate()
+
+    var ENDPOINT = 'https://instagram-clone-backend-2.onrender.com'
+    var socket = io(ENDPOINT)
 
     useEffect( () => {
         if(currentDialog) {

@@ -2,23 +2,12 @@
     border: 1px solid rgba(0, 0, 0, 0.26);
     padding: 20px;
     background-color: rgba(87, 87, 87, 0.479);
-    width: 300px;
+    max-width: 300px;
     border-radius: 5px;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .span {
     color: rgb(100, 100, 100);
-}
-
-@media (max-width: 800px) {
-    .item {
-        width: 250px;
-    }
-}
-
-@media (max-width: 600px) {
-    .item {
-        width: 200px;
-        padding: 10px;
-    }
 }

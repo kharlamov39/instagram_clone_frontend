@@ -4,9 +4,11 @@ import DialogItem from './DialogItem/DialogItem'
 import styles from './Dialogs.module.css'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks'
+// import { MessageShort } from '../../types/resTypes' 
 import { fetchDialogs } from '../../redux/dialogsSlice'
+// import io from 'socket.io-client';
 
-const ENDPOINT = 'http://localhost:1111'
+// const ENDPOINT = 'https://instagram-clone-backend-2.onrender.com'
 
 
 const Dialogs = () => {
