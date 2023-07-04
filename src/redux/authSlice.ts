@@ -93,6 +93,7 @@ const authSlice = createSlice({
             state.loading = false;
             state.currentUser = action.payload;
             state.isAuth = true;
+            localStorage.setItem('token', action.payload.token )
         })
         .addCase( fetchRegister.rejected, (state, action) => {
             state.loading = false;
