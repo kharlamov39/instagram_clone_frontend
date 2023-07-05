@@ -21,7 +21,7 @@ const Home:React.FC = () => {
             )) }
 
             { totalPages > page && 
-            <button className={styles.button} onClick={incrementPage}>ДАЛЕЕ</button>
+            <button className={styles.button} onClick={incrementPage}> MORE </button>
             }
 
             {loading && <Preloader /> }
