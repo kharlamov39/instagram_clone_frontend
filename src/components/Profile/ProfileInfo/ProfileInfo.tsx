@@ -58,7 +58,7 @@ const ProfileInfo:React.FC<Props> = ({profile, isMyProfile}) => {
             { isMyProfile && 
                 <div className={styles.buttons}>
                     <Link to={`update`}> 
-                        <Button variant='blue'> Редактировать профиль </Button>
+                        <Button variant='blue'> Edit profile </Button>
                     </Link>
                 </div>
             }

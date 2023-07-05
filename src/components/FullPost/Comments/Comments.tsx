@@ -49,7 +49,7 @@ const Comments:React.FC<Props> = ({postId}) => {
             <div className={styles.inputWrap}>
                 { window.localStorage.getItem('token') && 
                     <textarea 
-                        placeholder='Ваш комментарий...' 
+                        placeholder='your comment...' 
                         className={styles.input} 
                         value={text} 
                         onChange={(e:React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
@@ -57,15 +57,15 @@ const Comments:React.FC<Props> = ({postId}) => {
                 }
                 { text.length > 0 && 
                     <div>
-                        <Button onClick={addComment} variant='blue'> Добавить </Button>
+                        <Button onClick={addComment} variant='blue'> Add </Button>
                     </div>
                 }
             </div>
             <div className={styles.buttonsWrap}>
                 {
                     isComments 
-                    ? <button onClick={ hideComments } className={styles.button} > Скрыть комментарии</button> 
-                    : <button onClick={ showComments } className={styles.button} > Показать комментарии</button>
+                    ? <button onClick={ hideComments } className={styles.button} > Hide comments </button> 
+                    : <button onClick={ showComments } className={styles.button} > Show comments </button>
                 }
             </div>
             { isComments && 

@@ -30,13 +30,13 @@ const Register:React.FC<RegisterProp> = ({isAuth}) => {
                 ? <div className={styles.form}>
                     <Signup />
                     <div>
-                        Есть аккаунт? <span onClick={ () => setIsAccount(true)}> Войти </span> 
+                        Have you account? <span onClick={ () => setIsAccount(true)}> Login </span> 
                     </div>
                 </div>
                 : <div className={styles.form}>
                     <Login />
                     <div>
-                        Нет акканта? <span onClick={ () => setIsAccount(false)} > Создать </span> 
+                        No account? <span onClick={ () => setIsAccount(false)} > Create account </span> 
                     </div>
                 </div>
             } 

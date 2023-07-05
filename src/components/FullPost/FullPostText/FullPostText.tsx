@@ -31,7 +31,7 @@ const FullPostText:React.FC<Props> = ({text, editMode, setEditMode, postId}) => 
                         className={styles.input}
                         maxLength={100}
                     />
-                    <button className={styles.button} onClick={saveChanging}> Сохранить</button>
+                    <button className={styles.button} onClick={saveChanging}> Save </button>
                 </> 
                 : postText
             } 

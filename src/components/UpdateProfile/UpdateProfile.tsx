@@ -78,7 +78,7 @@ const UpdateProfile = () => {
                             <div style={{marginBottom: '30px'}}>
                                 <div>
                                     Avatar
-                                    <img src={camera} alt="camera" onClick={ () => inputRef.current?.click() } />
+                                    <img src={camera} alt="camera" onClick={ () => inputRef.current?.click() } style={{ marginLeft: '10px' }}/>
                                 </div>
                                 { !image.length 
                                 ? <img src={`${process.env.REACT_APP_API_URL}${profile.avatar}`} alt="avatar" width='200px' />
@@ -88,7 +88,7 @@ const UpdateProfile = () => {
                             </div>
                             
                             <Button type="submit" variant='blue'>
-                                Обновить
+                                Update
                             </Button>
                             
                         </Form>
@@ -98,7 +98,7 @@ const UpdateProfile = () => {
             </div>
             <div className={styles.deleteBtn}>
                 <Button variant='red' type='button' onClick={deleteProfile}>
-                    Удалить профиль
+                    Delete profile
                 </Button>
             </div>
         </div>

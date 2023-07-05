@@ -26,10 +26,10 @@ const Popup:React.FC<Props> = ({removePost,  setEditMode}) => {
             { popup && 
             <div className={styles.popup} >
                 <div>
-                    <button className={styles.removeBtn} onClick={removePost}>Удалить</button>
+                    <button className={styles.removeBtn} onClick={removePost}>Remove</button>
                 </div>
                 <div>
-                    <button className={styles.editBtn} onClick={ editPost}>Редактировать</button>
+                    <button className={styles.editBtn} onClick={ editPost}>Edit</button>
                 </div>
             </div>
             }
